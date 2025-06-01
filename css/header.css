@@ -1,0 +1,48 @@
+.header {
+    display: flex;  /* 弹性盒子 */
+    justify-content: space-between; /* 居左右显示 */
+    align-items: center;        /* 垂直居中 */
+    color: black;
+    padding: 10px 50px;      /* 内边距 外边距是margin: ?px */
+
+    /* 毛玻璃效果 */
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 0px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    color: rgba(255, 255, 255, 0.6);
+
+}
+
+.header .header_left {
+    color: white;
+    font-size: 20px;        /* 字体大小 */
+    font-weight: bold;      /* 字重 */
+    font-family: "Comic Sans MS";   /* 字体 */
+}
+
+
+
+
+.header .header_left span {
+    user-select: none;
+}
+
+.header .header_right span {
+    padding-inline: 10px;   /* 只调整前后的内边距 */
+    font-size: 18px;
+    transition: all .5s;    /* 设置样式变换过渡时间，可以理解为最简单的渐变动画 (默认为线性)*/
+
+}
+
+.header .header_right span:hover {
+    background-color: black;
+}
+
+.header .header_right span a:hover {
+    color: white;
+}

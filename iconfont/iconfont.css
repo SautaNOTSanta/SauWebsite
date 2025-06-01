@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4685517 */
+  src: url('iconfont.woff2?t=1726347361126') format('woff2'),
+       url('iconfont.woff?t=1726347361126') format('woff'),
+       url('iconfont.ttf?t=1726347361126') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-soundcloud:before {
+  content: "\e61a";
+}
+
+.icon-youtube:before {
+  content: "\ea07";
+}
+
+.icon-bilibili:before {
+  content: "\e600";
+}
+
+.icon-tuite:before {
+  content: "\e61c";
+}
+

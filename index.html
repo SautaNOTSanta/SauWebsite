@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>enter</title>
+    <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <style>
+        body {
+            text-align: center;
+            height: 100vh;
+            /*background-color: #fffbf0;*/
+            background: url("./images/0.png") no-repeat 50% 10px;
+            background-size: 30%;
+
+        }
+
+        .container {
+            position: absolute; /* 绝对定位 */
+            top: 50%; /* 向下偏移50% */
+            left: 50%; /* 向右偏移50% */
+            transform: translate(-50%, -50%); /* 向上和向左偏移自身50%以实现居中 */
+            /* 根据需要设置子元素的宽度和高度 */
+        }
+
+        .logo-wrapper .logo {
+            width: 220px;
+        }
+
+        /* 设置 Enter 按钮的初始样式 */
+        .enter .enter-button {
+            font-size: 30px;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.5s ease;
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); /* 初始状态没有边框 */
+        }
+
+        /* 鼠标悬停时，文字颜色改变 */
+        .enter .enter-button:hover {
+            box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0); /* 放大的虚线边框 */
+            transition: box-shadow 0.5s ease;
+        }
+
+        /* 鼠标悬停时，显示虚线边框并开始动画 */
+        .enter .enter-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed rgba(0, 0, 0, 0.5); /* 虚线边框 */
+            transform: translate(-50%, -50%);
+            opacity: 0; /* 初始状态不可见 */
+            transition: opacity 0.5s ease;
+        }
+
+        /* 鼠标悬停时，虚线边框逐渐清晰并放大 */
+        .enter .enter-button:hover::before {
+            opacity: 1; /* 鼠标悬停时显示虚线边框 */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-wrapper">
+            <img class="logo" src="./images/sautaLOGO.png" alt="LOGO">
+        </div>
+
+        <div class="enter">
+            <p><a class="enter-button" href="Home.html">Enter</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

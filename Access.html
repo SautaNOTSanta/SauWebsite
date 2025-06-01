@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access</title>
+    <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <style>
+        a:hover {
+            text-decoration: none;
+        }
+
+        .container {
+            background: #faf8ea;
+            height: 100vh;  /* 占据视觉窗口的100% */
+            color: black;
+        }
+
+        .iconfont {
+            font-size: 60px; /* 设置图标大小 */
+            color: #38bfe8; /* 设置图标颜色 */
+            padding: 20px;
+            transition: all .2s;
+        }
+
+        .icon-youtube {
+            color: red;
+        }
+
+        .icon-soundcloud {
+            color: #ff5700;
+        }
+
+        .iconfont:hover {
+            color: #cccccc;
+        }
+
+        .main-links {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中显示 */
+        }
+
+
+        .main-links-left {
+            border-right: 1px dashed black;
+            position: relative; /* 设置为相对定位 */
+            width: 200px;
+            height: 300px;
+        }
+        .main-links-left img {
+            position: absolute;
+            top: 50%; /* 向下偏移50% */
+            left: 50%; /* 向右偏移50% */
+            transform: translate(-50%, -50%); /* 向上和向左偏移自身50%以实现居中 */
+
+        }
+
+        .main-links-right p {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-links-right p span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header_left">
+                <span>Sauta</span>
+            </div>
+
+            <div class="header_right">
+                <span><a href="./Home.html">Home</a></span>
+                <span><a href="./Access.html">Access</a></span>
+                <span><a href="./Link.html">Links</a></span>
+                <span><a href="./About.html">About</a></span>
+            </div>
+        </div>
+
+        <div class="main-links">
+            <div class="main-links-left">
+                <img src="" width="150" height="250">
+            </div>
+
+            <div class="main-links-right">
+                <p>
+                    <a href="https://space.bilibili.com/24474955?spm_id_from=333.337.search-card.all.click">
+                        <i class="iconfont icon-bilibili"></i>
+                    </a>
+                    <span>Bilibili</span>
+                </p>
+
+                <p>
+                    <a href="https://www.youtube.com/@sautanotsanta">
+                        <i class="iconfont icon-youtube"></i>
+                    </a>
+                    <span>Youtube</span>
+                </p>
+
+                <p>
+                    <a href="https://soundcloud.com/nekohakusauta">
+                        <i class="iconfont icon-soundcloud"></i>
+                    </a>
+                    <span>SoundCloud</span>
+                </p>
+
+                <p>
+                    <a href="https://x.com/S4U7A">
+                        <i class="iconfont icon-tuite"></i>
+                    </a>
+                    <span>Twitter / X</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

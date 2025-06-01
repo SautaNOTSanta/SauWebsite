@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入通用样式，提高代码复用率  -->
+    <!--  全局样式的处理  -->
+    <link rel="stylesheet" href="./css/custom.css">
+    <!--  导航栏的样式  -->
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <style>
+        .container {
+            /* 背景图片 */
+            background: url("images/background.jpg") center center fixed;
+            height: 100vh;  /* 占据视觉窗口的100% */
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2); /* 透明背景 */
+            backdrop-filter: blur(10px); /* 模糊背景 */
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 边框阴影 */
+            width: 400px; /* 调整为较大长方形 */
+            height: 500px; /* 高度与宽度比值接近1:1，调整为正方形 */
+            border: 2px dashed rgba(255, 255, 255, 0.5); /* 浅白色虚线边框 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中显示 */
+            z-index: 5; /* 保证容器显示在前面 */
+        }
+
+        .logo-container .logo {
+            width: 150px;   /* 调整logo大小 */
+            margin-bottom: 20px;
+        }
+
+        .logo-container ul li {
+            transition: all .5s;
+        }
+
+        .logo-container ul li {
+            background-color: #0a0a23;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 10px 0;
+            min-width: 120px;
+            text-align: center;
+            transition: background-color 0.7s, transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logo-container .button {
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo-container ul li:hover {
+            background-color: #002ead;
+            transform: scale(1.05);
+        }
+
+        .logo-container .button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px #5a01a7;
+        }
+
+        .logo-container .button:active {
+            background-color: #ffbf00;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header_left">
+                <span>Sauta</span>
+            </div>
+
+            <div class="header_right">
+                <span><a href="./Home.html">Home</a></span>
+                <span><a href="./Access.html">Access</a></span>
+                <span><a href="./Link.html">Links</a></span>
+                <span><a href="./About.html">About</a></span>
+            </div>
+        </div>
+
+        <div class="logo-content">
+            <div class="logo-container">
+                <img class="logo" src="./images/sautaLOGO.png" alt="LOGO">
+                <ul class="logo-button-navigation">
+                    <li><a class="button" href="./Home.html">Home</a></li>
+                    <li><a class="button" href="./Access.html">Access</a></li>
+                    <li><a class="button" href="./Link.html">Links</a></li>
+                    <li><a class="button" href="./About.html">About</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

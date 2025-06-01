@@ -1,0 +1,42 @@
+/* 下面是Enter的动画 */
+
+
+/* 设置 Enter 按钮的初始样式 */
+.refTo a {
+    font-size: 30px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid transparent; /* 初始状态没有边框 */
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+/* 鼠标悬停时，文字颜色改变 */
+.refTo a:hover {
+    color: #000; /* 悬停时文字变成黑色 */
+}
+
+/* 鼠标悬停时，显示虚线边框并开始动画 */
+.refTo a:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #333; /* 虚线边框 */
+    box-sizing: border-box;
+    opacity: 0; /* 初始透明 */
+    transform: scale(0.8); /* 初始缩小 */
+    filter: blur(5px); /* 初始模糊 */
+    transition: all 1.5s ease; /* 设置所有效果的过渡 */
+}
+
+/* 鼠标悬停时，虚线边框逐渐清晰并放大 */
+.refTo a:hover::before {
+    opacity: 1;
+    transform: scale(1); /* 放大到正常大小 */
+    filter: blur(0); /* 变得清晰 */
+}

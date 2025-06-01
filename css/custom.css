@@ -1,0 +1,33 @@
+/*
+    全局样式设置，取消所有元素的内外边距
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+    超链接的统一样式设定
+    text-decoration: none;  取消下划线显示
+    color: black;       字体颜色设置为黑色
+
+    :hover --> 鼠标悬停时的效果
+    cursor:pointer; 鼠标显示为确认（？）
+    text-decoration: underline; 显示下划线
+*/
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: all .5s;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+ul li {
+    list-style-type: none;
+}
