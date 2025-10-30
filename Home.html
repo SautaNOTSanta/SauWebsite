@@ -41,6 +41,7 @@
             margin-bottom: 20px;
         }
 
+        /*
         .logo-container ul li {
             transition: all .5s;
         }
@@ -77,9 +78,57 @@
         .logo-container .button:active {
             background-color: #ffbf00;
         }
+        */
+
+        /* 新li外观 */
+        .logo-container ul li {
+            border: none;
+            padding-block-start: 5px;
+            padding-block-end: 5px;
+            margin: 10px 0;
+            min-width: 120px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* logo-container类下按钮的外观css */
+        .logo-container button {
+            /* 按钮字体设定css111 */
+            font-weight: bold;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+
+            /* 按钮本体相关css111 */
+            background-color: #0a0a23;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 25px;
+            min-height: 30px;
+            min-width: 150px;
+            display: inline-block;
+            transition: background-color 0.7s, box-shadow 0.7s, transform 0.3s;
+        }
+
+        .logo-container button:hover {
+            background-color: #002ead;
+            transform: scale(1.05);
+        }
+
+        .logo-container button:focus {
+            outline-color: transparent;
+            outline-style: solid;
+            box-shadow: 0 0 0 4px #5a01a7;
+        }
+
+        .logo-container button:active {
+            background-color: #ffbf00;
+        }
 
 
     </style>
+    <script src="js/funcScripts.js"></script>
 </head>
 <body>
     <div class="container">
@@ -100,10 +149,17 @@
             <div class="logo-container">
                 <img class="logo" src="./images/sautaLOGO.png" alt="LOGO">
                 <ul class="logo-button-navigation">
+                    <!--
                     <li><a class="button" href="./Home.html">Home</a></li>
                     <li><a class="button" href="./Access.html">Access</a></li>
                     <li><a class="button" href="./Link.html">Links</a></li>
                     <li><a class="button" href="./About.html">About</a></li>
+                    -->
+
+                    <li><button type="button" onclick="redirect('Home')">Home</button></li>
+                    <li><button type="button" onclick="redirect('Access')">Access</button></li>
+                    <li><button type="button" onclick="redirect('Link')">Links</button></li>
+                    <li><button type="button" onclick="redirect('About')">About</button></li>
                 </ul>
 
             </div>
