@@ -22,9 +22,19 @@
             align-items: center;
         }
 
-        .wrapper {  
-
+        @font-face {
+            font-family: "comic-sans";
+            src: url('./iconfont/comic.ttf');
         }
+
+        @font-face {
+            font-family: "broadcast-matter";
+            src: url('./iconfont/Broadcast_Matter.otf');
+        }
+
+        /* .wrapper {  
+
+        } */
 
         .logo {
             width: 150px;
@@ -35,9 +45,13 @@
             margin-top: 20px;
         }
         .main-content .main-name {
-            font-size: 20px;
+            font-size: 60px;
             font-weight: bolder;
+            font-family: "broadcast-matter";
+        }
 
+        .subtitle .main-subtitle {
+            font-size: smaller;
         }
 
         .main-content .main-name .name {
@@ -51,7 +65,8 @@
         }
         .main-content .main-text {
             font-weight: bold;
-            font-family: "Comic Sans MS";
+            letter-spacing: 1px;
+            font-family: "comic-sans";
         }
 
         .back-button {
