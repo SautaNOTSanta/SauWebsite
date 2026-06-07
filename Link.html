@@ -1,31 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Link</title>
-    <link rel="stylesheet" href="./css/custom.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/animations.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>早川咲詩 — links</title>
+  <link rel="stylesheet" href="./css/custom.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <style>
+    .links-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+    }
 
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 60px;
+      align-items: start;
+    }
+
+    .link-group { margin-bottom: 40px; }
+
+    .group-title {
+      font-family: var(--pixel);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .link-row { display: flex; flex-direction: column; gap: 0; }
+
+    .link-entry {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0;
+      border-bottom: 1px solid #161616;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.1s;
+    }
+    .link-entry:last-child { border-bottom: none; }
+    .link-entry:hover .le-name { color: var(--blue); }
+
+    .le-name {
+      font-family: var(--en);
+      font-size: 13px;
+      color: var(--white);
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .le-name::after { content: '↗'; font-size: 10px; color: var(--dim); }
+
+    .le-desc {
+      font-family: var(--en);
+      font-size: 11px;
+      color: var(--dim);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .le-desc.zh {
+      font-family: var(--zh);
+      font-weight: 700;
+      font-style: normal;
+      font-size: 11px;
+    }
+
+    .le-tag {
+      font-family: var(--comic);
+      font-size: 9px;
+      color: var(--pink);
+      letter-spacing: 0.04em;
+      margin-top: 3px;
+      opacity: 0.7;
+    }
+
+    .links-note {
+      font-family: var(--en);
+      font-size: 12px;
+      color: var(--dim);
+      font-style: italic;
+      margin-bottom: 36px;
+      border-left: 2px solid #222;
+      padding-left: 14px;
+      line-height: 1.9;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="header_left">
-                <span>Sauta</span>
-            </div>
 
-            <div class="header_right">
-                <span><a href="./Home.html">Home</a></span>
-                <span><a href="./Access.html">Access</a></span>
-                <span><a href="./Link.html">Links</a></span>
-                <span><a href="./About.html">About</a></span>
-            </div>
+<div class="stripe"></div>
+
+<header>
+  <a href="./index.html" class="site-id" style="text-decoration:none">
+    <div class="site-en">Hayakawa Sauta</div>
+    <div class="site-zh">早川　咲詩</div>
+  </a>
+  <nav>
+    <a href="./Home.html">blog</a>
+    <a href="./About.html">about</a>
+    <a href="./Works.html">works</a>
+    <a href="./Link.html" class="active">links</a>
+  </nav>
+</header>
+
+<div class="links-wrap fade-in">
+  <a class="back-link" href="./Home.html">back</a>
+
+  <div class="sec-head">
+    <div class="sec-title">links</div>
+    <div class="sec-count">friends &amp; places</div>
+  </div>
+
+  <p class="links-note">
+    Places I live on the internet, and things worth seeing.<br>
+  </p>
+
+  <div class="links-grid">
+
+    <!-- LEFT COL -->
+    <div>
+      <div class="link-group">
+        <div class="group-title">my profiles</div>
+        <div class="link-row">
+          <a class="link-entry" href="https://twitter.com/s4u7a" target="_blank" rel="noopener">
+            <span class="le-name">Twitter / X</span>
+            <span class="le-desc">@s4u7a</span>
+          </a>
+          <a class="link-entry" href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">
+            <span class="le-name">Bilibili</span>
+            <span class="le-desc">uid 24474955</span>
+          </a>
+          <a class="link-entry" href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">
+            <span class="le-name">GitHub</span>
+            <span class="le-desc">SautaNOTSanta</span>
+          </a>
+          <a class="link-entry" href="https://www.youtube.com/@sautanotsanta" target="_blank" rel="noopener">
+            <span class="le-name">YouTube</span>
+            <span class="le-desc">@sautanotsanta</span>
+          </a>
+          <a class="link-entry" href="https://soundcloud.com/nekohakusauta" target="_blank" rel="noopener">
+            <span class="le-name">SoundCloud</span>
+            <span class="le-desc">nekohakusauta</span>
+          </a>
         </div>
+      </div>
 
-
+      <div class="link-group">
+        <div class="group-title">projects</div>
+        <div class="link-row">
+          <a class="link-entry" href="#" target="_blank" rel="noopener">
+            <span class="le-name">PASAU SOUND</span>
+            <span class="le-desc">founder — label</span>
+          </a>
+          <a class="link-entry" href="#" target="_blank" rel="noopener">
+            <span class="le-name">Mousedown Records</span>
+            <span class="le-desc">co-founder</span>
+          </a>
+        </div>
+      </div>
     </div>
 
+    <!-- RIGHT COL -->
+    <div>
+      <div class="link-group">
+        <div class="group-title">friends &amp; blogroll</div>
+        <div class="link-row">
+          <!-- Add friend links here -->
+          <div class="link-entry" style="opacity:0.3; pointer-events:none; cursor:default">
+            <span class="le-name">— shiori-net.works | Shiori Networks // 詩織網路</span>
+            <span class="le-desc">femboy edm artist, also known as "臭小猪"</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="link-group">
+        <div class="group-title">things i like</div>
+        <div class="link-row">
+          <!-- Recommended sites -->
+          <div class="link-entry" style="opacity:0.3; pointer-events:none; cursor:default">
+            <span class="le-name">— (fill in)</span>
+            <span class="le-desc">sites, resources, etc.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <span class="zh">早川咲詩</span><br>
+    Hayakawa Sauta
+    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
+  </div>
+  <div class="footer-right">
+    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
+    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
+    <span class="footer-copy">© 2025 sauta</span>
+  </div>
+</footer>
+
+<div class="stripe"></div>
+
+<!-- APlayer -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="./js/player-init.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>早川咲詩 — works</title>
+  <link rel="stylesheet" href="./css/custom.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+  <style>
+    .works-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+    }
+
+    .cat-label:first-of-type { margin-top: 0; }
+
+    .works-note {
+      font-family: var(--en);
+      font-size: 13px;
+      color: var(--dim);
+      font-style: italic;
+      margin-bottom: 40px;
+      border-left: 2px solid #222;
+      padding-left: 16px;
+      line-height: 2;
+    }
+
+    /* ── DPlayer section ── */
+    .video-section {
+      margin: 40px 0 48px;
+    }
+
+    .video-section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--dim2);
+    }
+
+    .video-section-head .sec-title { color: var(--pink); }
+
+    #dplayer-container {
+      width: 100%;
+      max-width: 640px;
+      background: #000;
+      border: 1px solid var(--dim2);
+    }
+
+    .dplayer-notice {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stripe"></div>
+
+<header>
+  <a href="./index.html" class="site-id" style="text-decoration:none">
+    <div class="site-en">Hayakawa Sauta</div>
+    <div class="site-zh">早川　咲詩</div>
+  </a>
+  <nav>
+    <a href="./Home.html">blog</a>
+    <a href="./About.html">about</a>
+    <a href="./Works.html" class="active">works</a>
+    <a href="./Link.html">links</a>
+  </nav>
+</header>
+
+<div class="works-wrap fade-in">
+  <a class="back-link" href="./Home.html">back</a>
+
+  <div class="sec-head">
+    <div class="sec-title">works</div>
+    <div class="sec-count">discography &amp; projects</div>
+  </div>
+
+  <p class="works-note">
+    Music produced, co-produced, or otherwise contributed to.<br>
+    Fill in as needed — this is a living list.
+  </p>
+
+  <!-- SINGLES / ORIGINALS -->
+  <div class="cat-label">originals</div>
+  <div class="works-list stagger">
+
+    <div class="work-row" onclick="openYoutubeVideo('carcrashn siren', 'https://www.youtube-nocookie.com/embed/B-3yo7AlStU?si=9vN3-4DjMe4gbxkR')">
+      <!-- openVideo('carcrashn siren', './sounds/sakuramain.ogg') -->
+      <div class="work-num">001</div>
+      <div>
+        <div class="work-title">THAT TYPE OF HYPER JIRAI MUSIC</div>
+        <div class="work-sub">hyperpop · hyperflip · dariacore · sautacore</div>
+      </div>
+      <div class="work-meta">
+        2025<br>single<br>
+        <a href="#" onclick="event.stopPropagation()" style="pointer-events:none; opacity:0.3">↗ stream</a>
+      </div>
+    </div>
+
+    <div class="work-row" style="opacity:0.25; pointer-events:none; cursor:default">
+      <div class="work-num">002</div>
+      <div>
+        <div class="work-title">— (upcoming)</div>
+        <div class="work-sub">w.i.p.</div>
+      </div>
+      <div class="work-meta">2025<br>—</div>
+    </div>
+
+  </div>
+
+  <!-- VIDEO PLAYER SECTION (DPlayer) -->
+  <div class="video-section">
+    <div class="video-section-head">
+      <div class="sec-title" style="color: var(--pink)">video</div>
+      <div class="sec-count" id="dp-label">click a work above to load</div>
+    </div>
+    <div id="dplayer-container"></div>
+    <div class="dplayer-notice">
+      <!--
+        DPlayer — https://github.com/DIYgod/DPlayer
+        Replace video.url below with your actual video file path or stream URL.
+        Supports: mp4, webm, ogg, hls (.m3u8), dash (.mpd)
+        Example: url: 'https://your-cdn.com/carcrashn.mp4'
+      -->
+    </div>
+  </div>
+
+  <!-- LABELS / COMPILATIONS -->
+  <div class="cat-label">label &amp; compilations</div>
+  <div class="works-list stagger">
+
+    <div class="work-row">
+      <div class="work-num">—</div>
+      <div>
+        <div class="work-title">PASAU SOUND</div>
+        <div class="work-sub">founder · label</div>
+      </div>
+      <div class="work-meta">
+        ongoing<br>label
+      </div>
+    </div>
+
+    <div class="work-row">
+      <div class="work-num">—</div>
+      <div>
+        <div class="work-title">Mousedown Records <span class="collab">co-founder</span></div>
+        <div class="work-sub">co-founded</div>
+      </div>
+      <div class="work-meta">
+        ongoing<br>label
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /works-wrap -->
+
+<footer>
+  <div class="footer-left">
+    <span class="zh">早川咲詩</span><br>
+    Hayakawa Sauta
+    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
+  </div>
+  <div class="footer-right">
+    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
+    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
+    <span class="footer-copy">© 2025 sauta</span>
+  </div>
+</footer>
+
+<div class="stripe"></div>
+
+<!-- APlayer -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="./js/player-init.js"></script>
+
+<!-- DPlayer -->
+<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+<script>
+  var dp = null;
+
+  function openVideo(title, videoUrl) {
+    var container = document.getElementById('dplayer-container');
+    var label     = document.getElementById('dp-label');
+
+    // destroy previous instance
+    if (dp) { dp.destroy(); dp = null; }
+
+    label.textContent = title;
+    container.style.minHeight = '320px';
+
+    // pause APlayer if running
+    if (window.sautaPlayer) window.sautaPlayer.pause();
+
+    dp = new DPlayer({
+      container: container,
+      theme: '#55CDFC',
+      lang: 'zh-cn',
+      screenshot: false,
+      hotkey: true,
+      preload: 'auto',
+      logo: './images/sautaLOGO.png',
+      video: {
+        url: videoUrl,     // ← replace with actual video URL when available
+        // type: 'auto',   // 'auto' | 'hls' | 'dash' | 'flv' | 'webtorrent'
+        pic: './images/sautaLOGO.png',
+      },
+      // danmaku: false,   // disable barrage (optional)
+    });
+
+    // scroll to player
+    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function openYoutubeVideo(title, videoUrl) {
+    var container = document.getElementById('dplayer-container');
+    var label     = document.getElementById('dp-label');
+    label.textContent = title;
+    container.style.minHeight = '320px';
+    container.innerHTML = '<iframe width="560" height="315" src="' + videoUrl + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  }
+</script>
+
+</body>
+</html>

@@ -1,82 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>enter</title>
-    <link rel="stylesheet" href="./css/custom.css">
-    <link rel="stylesheet" href="./css/animations.css">
-    <style>
-        body {
-            text-align: center;
-            height: 100vh;
-            /*background-color: #fffbf0;*/
-            background: url("./images/0.png") no-repeat 50% 10px;
-            background-size: 30%;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>早川咲詩</title>
+  <meta name="description" content="Hayakawa Sauta — music producer, China-based, Vietnam-rooted.">
+  <link rel="stylesheet" href="./css/custom.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      align-items: stretch;
+    }
 
-        }
+    .entry-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 60px 32px;
+      position: relative;
+    }
 
-        .container {
-            position: absolute; /* 绝对定位 */
-            top: 50%; /* 向下偏移50% */
-            left: 50%; /* 向右偏移50% */
-            transform: translate(-50%, -50%); /* 向上和向左偏移自身50%以实现居中 */
-            /* 根据需要设置子元素的宽度和高度 */
-        }
+    /* subtle noise texture */
+    .entry-body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.4;
+      z-index: 0;
+    }
 
-        .logo-wrapper .logo {
-            width: 220px;
-        }
+    .entry-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: entryFade 0.9s ease forwards;
+    }
 
-        /* 设置 Enter 按钮的初始样式 */
-        .enter .enter-button {
-            font-size: 30px;
-            color: #333;
-            text-decoration: none;
-            padding: 10px 20px;
-            position: relative;
-            overflow: hidden;
-            transition: box-shadow 0.5s ease;
-            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); /* 初始状态没有边框 */
-        }
+    @keyframes entryFade {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-        /* 鼠标悬停时，文字颜色改变 */
-        .enter .enter-button:hover {
-            box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0); /* 放大的虚线边框 */
-            transition: box-shadow 0.5s ease;
-        }
+    .entry-logo {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 18px rgba(85,205,252,0.18));
+      transition: filter 0.3s;
+    }
+    .entry-logo:hover {
+      filter: drop-shadow(0 0 24px rgba(85,205,252,0.35));
+    }
 
-        /* 鼠标悬停时，显示虚线边框并开始动画 */
-        .enter .enter-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            border: 2px dashed rgba(0, 0, 0, 0.5); /* 虚线边框 */
-            transform: translate(-50%, -50%);
-            opacity: 0; /* 初始状态不可见 */
-            transition: opacity 0.5s ease;
-        }
+    .entry-name-zh {
+      font-family: var(--zh);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.35em;
+      color: var(--white);
+      text-align: center;
+    }
 
-        /* 鼠标悬停时，虚线边框逐渐清晰并放大 */
-        .enter .enter-button:hover::before {
-            opacity: 1; /* 鼠标悬停时显示虚线边框 */
-        }
+    .entry-name-en {
+      font-family: var(--en);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-align: center;
+      font-style: italic;
+    }
 
-    </style>
+    .entry-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gradient);
+      margin: 4px 0;
+    }
+
+    /* pixel decoration above enter button */
+    .entry-pixel-line {
+      font-family: var(--pixel);
+      font-size: 14px;
+      color: var(--dim2);
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    .enter-btn {
+      font-family: var(--comic);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      border-bottom: 1px solid var(--dim2);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      margin-top: 4px;
+    }
+    .enter-btn:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .entry-meta {
+      font-family: var(--pixel);
+      font-size: 14px;
+      color: var(--dim2);
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-wrapper">
-            <img class="logo" src="./images/sautaLOGO.png" alt="LOGO">
-        </div>
 
-        <div class="enter">
-            <p><a class="enter-button" href="Home.html">Enter</a></p>
-        </div>
+  <div class="stripe"></div>
 
+  <div class="entry-body">
+    <div class="entry-inner">
+      <img class="entry-logo" src="./images/sautaLOGO.png" alt="Sauta">
+      <div class="entry-name-zh">早川　咲詩</div>
+      <div class="entry-name-en">Hayakawa Sauta</div>
+      <div class="entry-divider"></div>
+      <div class="entry-pixel-line">· · ·</div>
+      <a class="enter-btn" href="./Home.html">enter →</a>
+      <div class="entry-meta">sauta.trancymzk.xyz</div>
     </div>
+  </div>
+
+  <div class="stripe"></div>
 
 </body>
 </html>

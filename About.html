@@ -1,101 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>About me</title>
-    <link rel="stylesheet" href="./css/custom.css">
-    <link rel="stylesheet" href="./css/animations.css">
-    <style>
-        body {
-            background-color: lightsteelblue;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>早川咲詩 — about</title>
+  <link rel="stylesheet" href="./css/custom.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <style>
+    .about-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+    }
 
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* 居中显示 */
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-content: center;
-            align-items: center;
-        }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 60px;
+      align-items: start;
+    }
 
-        @font-face {
-            font-family: "comic-sans";
-            src: url('./iconfont/comic.ttf');
-        }
+    .about-label-col {
+      border-right: 1px solid #222;
+      padding-top: 4px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      min-height: 300px;
+    }
 
-        @font-face {
-            font-family: "broadcast-matter";
-            src: url('./iconfont/Broadcast_Matter.otf');
-        }
+    .about-label-vert {
+      font-family: var(--pixel);
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: lowercase;
+      color: var(--blue);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      user-select: none;
+    }
 
-        /* .wrapper {  
+    .about-content { padding-top: 0; }
 
-        } */
+    .big-name-zh {
+      font-family: var(--zh);
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
 
-        .logo {
-            width: 150px;
-        }
+    .big-name-en {
+      font-family: var(--en);
+      font-size: 15px;
+      color: var(--dim);
+      font-style: italic;
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
 
-        .main-content {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .main-content .main-name {
-            font-size: 60px;
-            font-weight: bolder;
-            font-family: "broadcast-matter";
-        }
+    .about-text {
+      font-family: var(--en);
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 2.1;
+      font-style: italic;
+      max-width: 520px;
+      border-left: 2px solid #222;
+      padding-left: 18px;
+      margin-bottom: 36px;
+    }
 
-        .subtitle .main-subtitle {
-            font-size: smaller;
-        }
+    .about-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 48px;
+      padding-top: 24px;
+      border-top: 1px solid #222;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
 
-        .main-content .main-name .name {
-            color: #ffdbdd;
-        }
-        .main-content .subtitle {
-            font-weight: bold;
-            font-size: 14px;
-            padding-block: 10px;
-            font-family: "Comic Sans MS";
-        }
-        .main-content .main-text {
-            font-weight: bold;
-            letter-spacing: 1px;
-            font-family: "comic-sans";
-        }
+    .meta-item { display: flex; flex-direction: column; gap: 2px; }
 
-        .back-button {
-            text-align: center;
-            font-weight: bold;
-            font-size: 20px;
-            margin-top: 30px;
-        }
-    </style>
+    .meta-key {
+      font-family: var(--comic);
+      font-size: 9px;
+      color: var(--dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .meta-val {
+      font-family: var(--en);
+      font-size: 13px;
+      color: var(--white);
+    }
+    .meta-val.zh {
+      font-family: var(--zh);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .social-section { margin-top: 8px; }
+
+    .social-section .widget-title {
+      font-family: var(--pixel);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #222;
+      max-width: 480px;
+    }
+
+    .social-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+    }
+
+    .social-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 12px;
+      color: var(--dim);
+      transition: color 0.15s;
+      border-bottom: 1px solid #161616;
+      padding-bottom: 8px;
+    }
+    .social-link:hover { color: var(--white); }
+    .social-link:hover .soc-name { color: var(--blue); }
+
+    .soc-name {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      transition: color 0.15s;
+    }
+
+    .soc-handle {
+      font-family: var(--en);
+      font-size: 12px;
+      font-style: italic;
+      color: var(--dim);
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="stripe"></div>
 
-        <div class="main-content">
-            <p class="main-name"><a class="name" href="https://www.youtube.com/@sautanotsanta">Sauta</a></p>
-            <div class="subtitle">
-                <p class="main-subtitle">[Nekohaku Sauta]</p>
-                <p class="main-subtitle">jul 03, 2005</p>
-            </div>
+<header>
+  <a href="./index.html" class="site-id" style="text-decoration:none">
+    <div class="site-en">Hayakawa Sauta</div>
+    <div class="site-zh">早川　咲詩</div>
+  </a>
+  <nav>
+    <a href="./Home.html">blog</a>
+    <a href="./About.html" class="active">about</a>
+    <a href="./Works.html">works</a>
+    <a href="./Link.html">links</a>
+  </nav>
+</header>
 
-            <p class="main-text">Music producer based in China, originally from Vietnam</p>
-            <p class="main-text">Subculture enthusiast, weeb, main daw is FL Studio/Bitwig</p>
-            <p class="main-text">Also uses REAPER/Ableton</p>
-            <p class="main-text">Founder of PASAU SOUND , co-Founder of Mousedown Records</p>
+<div class="about-wrap fade-in">
+  <a class="back-link" href="./Home.html">back</a>
 
-            <button class="back-button"><a href="Home.html" class="back-button">BACK</a></button>
-        </div>
-
+  <div class="about-grid">
+    <div class="about-label-col">
+      <div class="about-label-vert">about</div>
     </div>
 
+    <div class="about-content">
+      <div class="big-name-zh">早川　咲詩</div>
+      <div class="big-name-en">Hayakawa Sauta</div>
+
+      <div class="about-text">
+        Music producer based in China, originally from Vietnam.<br>
+        Founder of PASAU SOUND, co-Founder of Mousedown Records.<br>
+        Subculture enthusiast and weeb.<br>
+        Primary DAW: FL Studio / Bitwig. Also uses REAPER.
+      </div>
+
+      <div class="about-meta-grid">
+        <div class="meta-item">
+          <span class="meta-key">born</span>
+          <span class="meta-val">jul 03, 2005</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">location</span>
+          <span class="meta-val zh">China</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">origin</span>
+          <span class="meta-val">Vietnam</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">genre</span>
+          <span class="meta-val">hyperflip · sautacore · sextrance · whatever</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">label</span>
+          <span class="meta-val">PASAU SOUND</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">co-label</span>
+          <span class="meta-val">Mousedown Records</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">daw</span>
+          <span class="meta-val">FL Studio · Bitwig</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">also</span>
+          <span class="meta-val">REAPER · Ableton</span>
+        </div>
+      </div>
+
+      <div class="social-section">
+        <div class="widget-title">contact & social</div>
+        <div class="social-row">
+          <a class="social-link" href="https://twitter.com/s4u7a" target="_blank" rel="noopener">
+            <span class="soc-name">twitter</span>
+            <span class="soc-handle">@s4u7a</span>
+          </a>
+          <a class="social-link" href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">
+            <span class="soc-name">bilibili</span>
+            <span class="soc-handle">uid 24474955</span>
+          </a>
+          <a class="social-link" href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">
+            <span class="soc-name">github</span>
+            <span class="soc-handle">SautaNOTSanta</span>
+          </a>
+          <a class="social-link" href="https://www.youtube.com/@sautanotsanta" target="_blank" rel="noopener">
+            <span class="soc-name">youtube</span>
+            <span class="soc-handle">@sautanotsanta</span>
+          </a>
+          <a class="social-link" href="https://soundcloud.com/nekohakusauta" target="_blank" rel="noopener">
+            <span class="soc-name">soundcloud</span>
+            <span class="soc-handle">nekohakusauta</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <span class="zh">早川咲詩</span><br>
+    Hayakawa Sauta
+    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
+  </div>
+  <div class="footer-right">
+    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
+    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
+    <span class="footer-copy">© 2025 sauta</span>
+  </div>
+</footer>
+
+<div class="stripe"></div>
+
+<!-- APlayer -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="./js/player-init.js"></script>
+
+</body>
 </html>

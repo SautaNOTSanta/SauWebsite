@@ -1,48 +1,86 @@
-.header {
-    display: flex;  /* 弹性盒子 */
-    justify-content: space-between; /* 居左右显示 */
-    align-items: center;        /* 垂直居中 */
-    color: black;
-    padding: 10px 50px;      /* 内边距 外边距是margin: ?px */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — header.css — rev.2
+   ═══════════════════════════════════════════ */
 
-    /* 毛玻璃效果 */
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 0px solid rgba(255, 255, 255, 0.18);
-    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    border-radius: 0 0 10px 10px;
-    -webkit-border-radius: 0 0 10px 10px;
-    color: rgba(255, 255, 255, 0.6);
-
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 52px;
+  background: rgba(8, 8, 8, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1c1c1c;
 }
 
-.header .header_left {
-    color: white;
-    font-size: 20px;        /* 字体大小 */
-    font-weight: bold;      /* 字重 */
-    font-family: "Comic Sans MS";   /* 字体 */
+.site-id {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
 }
 
-
-
-
-.header .header_left span {
-    user-select: none;
+.site-en {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #ebebeb;
 }
 
-.header .header_right span {
-    padding-inline: 10px;   /* 只调整前后的内边距 */
-    font-size: 18px;
-    transition: all .5s;    /* 设置样式变换过渡时间，可以理解为最简单的渐变动画 (默认为线性)*/
-
+.site-zh {
+  font-family: 'ChillBitmap', 'Microsoft YaHei', sans-serif;
+  font-size: 11px;
+  color: #F7A8B8;
+  letter-spacing: 0.22em;
 }
 
-.header .header_right span:hover {
-    background-color: black;
+nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
 }
 
-.header .header_right span a:hover {
-    color: white;
+nav a {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: #555;
+  text-transform: lowercase;
+  transition: color 0.15s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #55CDFC;
+  transition: width 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #ebebeb;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+nav a:nth-child(2)::after { background: #F7A8B8; }
+nav a:nth-child(4)::after { background: #F7A8B8; }
+
+/* active nav item gets comic font for personality */
+nav a.active {
+  font-family: 'ComicSans', 'Comic Sans MS', cursive;
+  font-size: 12px;
+  letter-spacing: 0.04em;
 }

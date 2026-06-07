@@ -1,171 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--  引入通用样式，提高代码复用率  -->
-    <!--  全局样式的处理  -->
-    <link rel="stylesheet" href="./css/custom.css">
-    <!--  导航栏的样式  -->
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/animations.css">
-    <style>
-        .container {
-            /* 背景图片 */
-            background: url("images/background.jpg") center center fixed;
-            height: 100vh;  /* 占据视觉窗口的100% */
-        }
-
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2); /* 透明背景 */
-            backdrop-filter: blur(10px); /* 模糊背景 */
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 边框阴影 */
-            width: 400px; /* 调整为较大长方形 */
-            height: 500px; /* 高度与宽度比值接近1:1，调整为正方形 */
-            border: 2px dashed rgba(255, 255, 255, 0.5); /* 浅白色虚线边框 */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* 居中显示 */
-            z-index: 5; /* 保证容器显示在前面 */
-        }
-
-        .logo-container .logo {
-            width: 150px;   /* 调整logo大小 */
-            margin-bottom: 20px;
-        }
-
-        /*
-        .logo-container ul li {
-            transition: all .5s;
-        }
-
-        .logo-container ul li {
-            background-color: #0a0a23;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            margin: 10px 0;
-            min-width: 120px;
-            text-align: center;
-            transition: background-color 0.7s, transform 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .logo-container .button {
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .logo-container ul li:hover {
-            background-color: #002ead;
-            transform: scale(1.05);
-        }
-
-        .logo-container .button:focus {
-            outline: none;
-            box-shadow: 0 0 0 4px #5a01a7;
-        }
-
-        .logo-container .button:active {
-            background-color: #ffbf00;
-        }
-        */
-
-        /* 新li外观 */
-        .logo-container ul li {
-            border: none;
-            padding-block-start: 5px;
-            padding-block-end: 5px;
-            margin: 10px 0;
-            min-width: 120px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        /* logo-container类下按钮的外观css */
-        .logo-container button {
-            /* 按钮字体设定css111 */
-            font-weight: bold;
-            font-size: 18px;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-
-            /* 按钮本体相关css111 */
-            background-color: #0a0a23;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 25px;
-            min-height: 30px;
-            min-width: 150px;
-            display: inline-block;
-            transition: background-color 0.7s, box-shadow 0.7s, transform 0.3s;
-        }
-
-        .logo-container button:hover {
-            background-color: #002ead;
-            transform: scale(1.05);
-        }
-
-        .logo-container button:focus {
-            outline-color: transparent;
-            outline-style: solid;
-            box-shadow: 0 0 0 4px #5a01a7;
-        }
-
-        .logo-container button:active {
-            background-color: #ffbf00;
-        }
-
-
-    </style>
-    <script src="js/funcScripts.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>早川咲詩 — blog</title>
+  <meta name="description" content="Hayakawa Sauta — music producer blog.">
+  <link rel="stylesheet" href="./css/custom.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="header_left">
-                <span>Sauta</span>
-            </div>
 
-            <div class="header_right">
-                <span><a href="./Home.html">Home</a></span>
-                <span><a href="./Access.html">Access</a></span>
-                <span><a href="./Link.html">Links</a></span>
-                <span><a href="./About.html">About</a></span>
-            </div>
-        </div>
+<div class="stripe"></div>
 
-        <div class="logo-content">
-            <div class="logo-container">
-                <img class="logo" src="./images/sautaLOGO.png" alt="LOGO">
-                <ul class="logo-button-navigation">
-                    <!--
-                    <li><a class="button" href="./Home.html">Home</a></li>
-                    <li><a class="button" href="./Access.html">Access</a></li>
-                    <li><a class="button" href="./Link.html">Links</a></li>
-                    <li><a class="button" href="./About.html">About</a></li>
-                    -->
+<!-- HEADER -->
+<header>
+  <a href="./index.html" class="site-id" style="text-decoration:none">
+    <div class="site-en">Hayakawa Sauta</div>
+    <div class="site-zh">早川　咲詩</div>
+  </a>
+  <nav>
+    <a href="./Home.html" class="active">blog</a>
+    <a href="./About.html">about</a>
+    <a href="./Works.html">works</a>
+    <a href="./Link.html">links</a>
+  </nav>
+</header>
 
-                    <li><button type="button" onclick="redirect('Home')">Home</button></li>
-                    <li><button type="button" onclick="redirect('Access')">Access</button></li>
-                    <li><button type="button" onclick="redirect('Link')">Links</button></li>
-                    <li><button type="button" onclick="redirect('About')">About</button></li>
-                </ul>
+<!-- MAIN -->
+<div class="page-wrap">
 
-            </div>
+  <!-- HERO -->
+  <div style="
+    padding: 60px 0 44px;
+    border-bottom: 1px solid #222;
+  " class="fade-in">
+    <div style="
+      font-family: var(--pixel);
+      font-size: 14px;
+      color: var(--dim);
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      margin-bottom: 18px;
+    ">// music producer · subculture · china</div>
 
-        </div>
+    <h1 style="
+      font-family: var(--en);
+      font-size: clamp(34px, 5.5vw, 62px);
+      font-weight: normal;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    ">Hayakawa Sauta</h1>
 
+    <div style="
+      font-family: var(--zh);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--pink);
+      letter-spacing: 0.35em;
+      margin-bottom: 22px;
+    ">早川　咲詩</div>
+
+    <p style="
+      font-family: var(--en);
+      font-size: 13px;
+      color: var(--dim);
+      font-style: italic;
+      max-width: 480px;
+      line-height: 2;
+      border-left: 2px solid #222;
+      padding-left: 16px;
+    ">
+      Music producer. China-based, Vietnam-rooted.<br>
+      Founder of PASAU SOUND · co-Founder of Mousedown Records.<br>
+      Subculture enthusiast. Weeb.
+    </p>
+
+    <div style="
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    ">
+      <span class="tag blue">FL Studio</span>
+      <span class="tag">Bitwig</span>
+      <span class="tag">REAPER</span>
+      <span class="tag pink">digicore</span>
+      <span class="tag pink">hyperpop</span>
     </div>
+  </div>
+
+  <!-- CONTENT GRID -->
+  <div class="content-grid">
+
+    <!-- BLOG POSTS -->
+    <div class="main-col">
+      <div class="sec-head">
+        <div class="sec-title">blog</div>
+        <div class="sec-count">2 posts</div>
+      </div>
+
+      <div class="post-list stagger">
+
+        <!-- POST 1 (EN) -->
+        <div class="post-item" onclick="location.href='./posts/post-01-en.html'">
+          <div class="post-date">
+            2025.06.--
+            <span class="post-lang en">EN</span>
+          </div>
+          <div class="post-title">[Article 1 EN title — to be filled]</div>
+          <div class="post-excerpt">
+            [Excerpt — paste docx content here]
+          </div>
+          <span class="post-tag">production</span>
+        </div>
+
+        <!-- POST 1 (CN) -->
+        <div class="post-item" onclick="location.href='./posts/post-01-cn.html'">
+          <div class="post-date">
+            2025.06.--
+            <span class="post-lang">CN</span>
+          </div>
+          <div class="post-title-zh">[article1 — 我是占位符]</div>
+          <div class="post-excerpt">
+            [摘要占位符 — 内容]
+          </div>
+          <span class="post-tag">制作</span>
+        </div>
+
+        <!-- POST 2 (EN) -->
+        <div class="post-item" onclick="location.href='./posts/post-02-en.html'">
+          <div class="post-date">
+            2025.06.--
+            <span class="post-lang en">EN</span>
+          </div>
+          <div class="post-title">[article2 — placeholder]</div>
+          <div class="post-excerpt">
+            [Excerpt — docx here]
+          </div>
+          <span class="post-tag">thoughts</span>
+        </div>
+
+        <!-- POST 2 (CN) -->
+        <div class="post-item" onclick="location.href='./posts/post-02-cn.html'">
+          <div class="post-date">
+            2025.06.--
+            <span class="post-lang">CN</span>
+          </div>
+          <div class="post-title-zh">[文2标 — 我也是占位符]</div>
+          <div class="post-excerpt">
+            [摘要 — 内容]
+          </div>
+          <span class="post-tag">thoughts</span>
+        </div>
+
+      </div>
+    </div><!-- /main-col -->
+
+    <!-- SIDEBAR -->
+    <div class="side-col">
+
+      <div class="widget">
+        <div class="widget-title">profile</div>
+        <div class="profile-block">
+          <div class="profile-row">
+            <span class="profile-key">name</span>
+            <span class="profile-val zh">早川 咲詩</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">alias</span>
+            <span class="profile-val">Sauta</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">born</span>
+            <span class="profile-val">jul 03, 2005</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">based</span>
+            <span class="profile-val zh">China</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">origin</span>
+            <span class="profile-val">Vietnam</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">daw</span>
+            <span class="profile-val">FL Studio</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">label</span>
+            <span class="profile-val">PASAU SOUND</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">currently</div>
+        <div class="currently-list">
+          <div>
+            <div class="curr-label">listening ♪</div>
+            <!-- syncs with APlayer via player-init.js -->
+            <div class="curr-value" id="now-playing" style="color: var(--dim); font-size:11px">—</div>
+          </div>
+          <div>
+            <div class="curr-label">working on</div>
+            <div class="curr-value zh">digicore demo</div>
+          </div>
+          <div>
+            <div class="curr-label">playing</div>
+            <div class="curr-value" style="color: var(--dim); font-size:11px">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">links</div>
+        <div class="links-list">
+          <a class="ext-link" href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
+          <a class="ext-link" href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">bilibili</a>
+          <a class="ext-link" href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
+          <a class="ext-link" href="./Link.html">all links →</a>
+        </div>
+      </div>
+
+    </div><!-- /side-col -->
+
+  </div><!-- /content-grid -->
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="footer-left">
+    <span class="zh">早川咲詩</span><br>
+    Hayakawa Sauta
+    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
+  </div>
+  <div class="footer-right">
+    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
+    <a href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">bilibili</a>
+    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
+    <span class="footer-copy">© 2025 sauta</span>
+  </div>
+</footer>
+
+<div class="stripe"></div>
+
+<!-- APlayer -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="./js/player-init.js"></script>
+
 </body>
 </html>
