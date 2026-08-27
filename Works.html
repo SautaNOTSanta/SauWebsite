@@ -1,236 +1,962 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>早川咲詩 — works</title>
-  <link rel="stylesheet" href="./css/custom.css">
-  <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
-  <style>
-    .works-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 32px 100px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早川咲詩 — works</title>
+<meta name="description" content="Hayakawa Sauta — works page, island style.">
+<style>
+/* ===== real site base stylesheet ===== */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — custom.css
+   design: GPT × Sauta, 2025 — rev. 2
+   ═══════════════════════════════════════════ */
 
-    .cat-label:first-of-type { margin-top: 0; }
+/* ─── FONTS ─── */
+@font-face {
+  font-family: 'ChillBitmap';
+  src: url('../iconfont/ChillBitmap7x.woff2') format('woff2'),
+       url('../iconfont/ChillBitmap7x.ttf')   format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
-    .works-note {
-      font-family: var(--en);
-      font-size: 13px;
-      color: var(--dim);
-      font-style: italic;
-      margin-bottom: 40px;
-      border-left: 2px solid #222;
-      padding-left: 16px;
-      line-height: 2;
-    }
+@font-face {
+  font-family: 'ComicSans';
+  src: url('../iconfont/comic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
-    /* ── DPlayer section ── */
-    .video-section {
-      margin: 40px 0 48px;
-    }
+/* ─── TOKENS ─── */
+:root {
+  --black:    #080808;
+  --offblack: #0f0f0f;
+  --white:    #ebebeb;
+  --dim:      #555;
+  --dim2:     #222;
+  --blue:     #55CDFC;
+  --pink:     #F7A8B8;
+  --gradient: linear-gradient(90deg, var(--blue), var(--pink), #fff);
 
-    .video-section-head {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--dim2);
-    }
+  --en:     'Times New Roman', Georgia, serif;
+  --zh:     'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  --mono:   'Courier New', monospace;
+  --pixel:  'ChillBitmap', 'Courier New', monospace;  /* 寒蝉点阵体 — used for labels & section marks */
+  --comic:  'ComicSans', 'Comic Sans MS', cursive;    /* used sparingly for playful accents */
+}
 
-    .video-section-head .sec-title { color: var(--pink); }
+/* ─── RESET ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    #dplayer-container {
-      width: 100%;
-      max-width: 640px;
-      background: #000;
-      border: 1px solid var(--dim2);
-    }
+html { scroll-behavior: smooth; }
 
-    .dplayer-notice {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--dim);
-      margin-top: 8px;
-      letter-spacing: 0.06em;
-    }
-  </style>
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--en);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── TRANS STRIPE ─── */
+.stripe {
+  width: 100%;
+  height: 3px;
+  background: var(--gradient);
+  flex-shrink: 0;
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ─── SECTION HEADER ─── */
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dim2);
+}
+
+.sec-title {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--white);
+  image-rendering: pixelated;
+}
+
+.sec-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+}
+
+/* ─── TAGS ─── */
+.tag {
+  display: inline-block;
+  font-family: var(--comic);
+  font-size: 11px;
+  color: var(--dim);
+  border: 1px solid var(--dim2);
+  padding: 1px 8px;
+  letter-spacing: 0.03em;
+}
+
+.tag.blue { color: var(--blue); border-color: rgba(85,205,252,0.25); }
+.tag.pink { color: var(--pink); border-color: rgba(247,168,184,0.25); }
+
+/* ─── STATUS DOT ─── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  margin-bottom: 20px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  animation: pulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--dim2);
+  margin: 0 32px;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-left {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 2;
+}
+
+.footer-left .zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--white);
+}
+
+.footer-right {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-right a { color: var(--dim); transition: color 0.15s; }
+.footer-right a:hover { color: var(--pink); }
+
+.footer-copy { margin-top: 8px; color: var(--dim2); }
+
+/* ─── PIXEL DECO LINE ─── */
+.pixel-rule {
+  font-family: var(--pixel);
+  font-size: 14px;
+  color: var(--dim2);
+  letter-spacing: 0.05em;
+  user-select: none;
+  margin: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ─── HORIZONTAL RULE ─── */
+hr.thin {
+  border: none;
+  height: 1px;
+  background: var(--dim2);
+}
+
+/* ─── CONTENT GRID (blog + sidebar) ─── */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  gap: 0;
+  align-items: start;
+}
+
+.main-col {
+  border-right: 1px solid var(--dim2);
+  padding-right: 40px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.side-col {
+  padding-left: 32px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+/* ─── SIDEBAR WIDGETS ─── */
+.widget { margin-bottom: 36px; }
+
+.widget-title {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--dim);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--dim2);
+}
+
+/* profile rows */
+.profile-block {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.profile-key {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.profile-val {
+  font-family: var(--en);
+  font-size: 11px;
+  color: var(--white);
+  text-align: right;
+}
+.profile-val.zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* currently */
+.currently-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curr-label {
+  font-family: var(--comic);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.curr-value {
+  font-family: var(--en);
+  font-size: 12px;
+  color: var(--white);
+  font-style: italic;
+}
+.curr-value.zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 11px;
+}
+
+/* now-playing live update */
+#now-playing {
+  transition: opacity 0.3s, color 0.3s;
+}
+
+/* ext links */
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ext-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  transition: color 0.15s;
+}
+.ext-link::before { content: '→'; font-size: 10px; color: var(--dim2); transition: color 0.15s; }
+.ext-link:hover { color: var(--white); }
+.ext-link:hover::before { color: var(--blue); }
+
+/* ─── BLOG POST LIST ─── */
+.post-list { display: flex; flex-direction: column; gap: 0; }
+
+.post-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--dim2);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.post-item:last-child { border-bottom: none; }
+.post-item:hover .post-title { color: var(--blue); }
+.post-item:hover .post-title-zh { color: var(--dim); }
+
+.post-date {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-lang {
+  font-family: var(--comic);
+  font-size: 10px;
+  border: 1px solid rgba(247,168,184,0.25);
+  color: var(--pink);
+  padding: 0 5px;
+}
+.post-lang.en { color: var(--blue); border-color: rgba(85,205,252,0.25); }
+
+.post-title {
+  font-family: var(--en);
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  transition: color 0.15s;
+}
+
+.post-title-zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--dim);
+  margin-bottom: 10px;
+  transition: color 0.15s;
+}
+
+.post-excerpt {
+  font-size: 13px;
+  color: var(--dim);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.post-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--comic);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--blue);
+  opacity: 0.7;
+}
+.post-tag::before { content: '# '; }
+
+/* ─── WORKS LIST ─── */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dim2);
+  margin-bottom: 12px;
+}
+
+.work-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #1a1a1a;
+  transition: background 0.15s;
+  gap: 24px;
+  cursor: pointer;
+}
+.work-row:last-child { border-bottom: none; }
+.work-row:hover { background: rgba(255,255,255,0.02); }
+.work-row:hover .work-title { color: var(--blue); }
+
+.work-num {
+  font-family: var(--pixel);
+  font-size: 14px;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: 0.05em;
+}
+
+.work-title {
+  font-family: var(--en);
+  font-size: 14px;
+  transition: color 0.15s;
+  line-height: 1.3;
+}
+
+.work-sub {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 3px;
+}
+
+.work-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  text-align: right;
+  line-height: 1.9;
+}
+
+.work-meta a {
+  color: var(--pink);
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+.work-meta a:hover { opacity: 1; }
+
+/* collab badge */
+.collab {
+  font-family: var(--comic);
+  font-size: 9px;
+  color: var(--dim);
+  border: 1px solid #2a2a2a;
+  padding: 1px 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ─── CAT LABEL (works page section headers) ─── */
+.cat-label {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--blue);
+  margin: 36px 0 16px;
+}
+.cat-label:first-of-type { margin-top: 0; }
+
+/* ─── BACK LINK ─── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+  transition: color 0.15s;
+}
+.back-link::before { content: '←'; }
+.back-link:hover { color: var(--white); }
+
+/* ─── APLAYER DARK OVERRIDE ─── */
+.aplayer {
+  background: rgba(10,10,10,0.98) !important;
+  border: 1px solid var(--dim2) !important;
+  border-bottom: none !important;
+  box-shadow: 0 -2px 28px rgba(0,0,0,0.7) !important;
+  border-radius: 0 !important;
+  font-family: var(--mono) !important;
+}
+.aplayer * { border-radius: 0 !important; }
+.aplayer .aplayer-body { background: transparent !important; }
+.aplayer .aplayer-pic { border-right: 1px solid var(--dim2) !important; }
+.aplayer .aplayer-name { color: var(--white) !important; font-family: var(--en) !important; font-style: italic; }
+.aplayer .aplayer-author { color: var(--pink) !important; font-family: var(--mono) !important; font-size: 10px !important; }
+.aplayer .aplayer-time { color: var(--dim) !important; font-family: var(--mono) !important; font-size: 10px !important; }
+.aplayer .aplayer-time-inner { color: var(--dim) !important; }
+.aplayer .aplayer-bar-wrap { padding: 0 !important; }
+.aplayer .aplayer-bar { background: var(--dim2) !important; height: 2px !important; }
+.aplayer .aplayer-loaded { background: rgba(85,205,252,0.12) !important; }
+.aplayer .aplayer-played { background: var(--blue) !important; }
+.aplayer .aplayer-thumb { background: var(--blue) !important; box-shadow: none !important; }
+.aplayer .aplayer-volume-bar { background: var(--dim2) !important; }
+.aplayer .aplayer-volume { background: var(--blue) !important; }
+.aplayer svg path { fill: var(--dim) !important; transition: fill 0.15s; }
+.aplayer .aplayer-icon:hover svg path { fill: var(--white) !important; }
+.aplayer .aplayer-icon-play svg path { fill: var(--white) !important; }
+.aplayer .aplayer-list { background: rgba(8,8,8,0.99) !important; border-top: 1px solid var(--dim2) !important; }
+.aplayer .aplayer-list li { color: var(--dim) !important; border-bottom: 1px solid #1a1a1a !important; font-family: var(--mono) !important; font-size: 11px !important; }
+.aplayer .aplayer-list li:hover { background: rgba(255,255,255,0.025) !important; }
+.aplayer .aplayer-list li.aplayer-list-light { background: rgba(85,205,252,0.04) !important; }
+.aplayer .aplayer-list li span.aplayer-list-cur { background: var(--blue) !important; }
+.aplayer .aplayer-list li .aplayer-list-index { color: rgba(255,255,255,0.15) !important; }
+.aplayer .aplayer-list li .aplayer-list-author { color: var(--dim2) !important; }
+.aplayer-fixed-controller {
+  background: var(--black) !important;
+  border: 1px solid var(--dim2) !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6) !important;
+  border-radius: 0 !important;
+}
+.aplayer-fixed-controller svg path { fill: var(--blue) !important; }
+
+/* ─── DPLAYER DARK OVERRIDE ─── */
+.dplayer-container {
+  border: 1px solid var(--dim2);
+  background: #000 !important;
+}
+.dplayer-controller { background: linear-gradient(transparent, rgba(0,0,0,0.85)) !important; }
+.dplayer-played { background: var(--blue) !important; }
+.dplayer-thumb { background: var(--blue) !important; box-shadow: none !important; }
+.dplayer-volume-bar-inner { background: var(--pink) !important; }
+.dplayer-comment-input { font-family: var(--mono) !important; background: var(--offblack) !important; color: var(--white) !important; border: 1px solid var(--dim2) !important; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 700px) {
+  .page-wrap { padding: 0 16px; }
+
+  header { padding: 0 16px; }
+  nav { gap: 14px; }
+  nav a { font-size: 10px; }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-col {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 32px;
+  }
+  .side-col {
+    padding-left: 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--dim2);
+  }
+
+  footer {
+    margin: 0 16px;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer-right { text-align: left; }
+
+  .work-row {
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+  }
+  .work-meta { display: none; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .about-label-col { display: none; }
+
+  .links-grid { grid-template-columns: 1fr; }
+
+  .aplayer.aplayer-fixed { bottom: 0 !important; }
+}
+
+/* ─── STAGGER ANIMATION (extended) ─── */
+.stagger > *:nth-child(7)  { animation-delay: 0.35s; }
+.stagger > *:nth-child(8)  { animation-delay: 0.40s; }
+.stagger > *:nth-child(9)  { animation-delay: 0.45s; }
+.stagger > *:nth-child(10) { animation-delay: 0.50s; }
+.stagger > *:nth-child(11) { animation-delay: 0.55s; }
+.stagger > *:nth-child(12) { animation-delay: 0.60s; }
+
+/* ===== real site header.css ===== */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — header.css — rev.2
+   ═══════════════════════════════════════════ */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 52px;
+  background: rgba(8, 8, 8, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.site-id {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.site-en {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #ebebeb;
+}
+
+.site-zh {
+  font-family: 'ChillBitmap', 'Microsoft YaHei', sans-serif;
+  font-size: 11px;
+  color: #F7A8B8;
+  letter-spacing: 0.22em;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+nav a {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: #555;
+  text-transform: lowercase;
+  transition: color 0.15s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #55CDFC;
+  transition: width 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #ebebeb;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+nav a:nth-child(2)::after { background: #F7A8B8; }
+nav a:nth-child(4)::after { background: #F7A8B8; }
+
+/* active nav item gets comic font for personality */
+nav a.active {
+  font-family: 'ComicSans', 'Comic Sans MS', cursive;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+/* ===== real site animations.css ===== */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — animations.css
+   ═══════════════════════════════════════════ */
+
+/* fade-in on load */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.fade-in-slow {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+/* staggered children */
+.stagger > * {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+
+
+/* ===== shared "island" theme components, ported from shiori-net.work,
+   re-skinned with Sauta's real dark / blue-pink identity ===== */
+
+.bgwrap{ position: fixed; inset: 0; z-index: -1; background: var(--black); }
+.bgwrap .cover{
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 45% at 12% -8%, rgba(85,205,252,0.10), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 92% 8%, rgba(247,168,184,0.09), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 115%, rgba(255,255,255,0.03), transparent 60%);
+  animation: onReadyBg 2.4s cubic-bezier(.19,1,.22,1);
+}
+@keyframes onReadyBg { 0%{filter:blur(60px);opacity:0;} 100%{filter:blur(0);opacity:1;} }
+
+.islandbar{ position: fixed; top: 10px; left: 0; right: 0; z-index: 50; display: flex; justify-content: center; transition: all .3s; }
+.islandbar ul{
+  list-style: none; display: flex; margin: 0; padding: 6px 10px;
+  width: 98%; max-width: 480px; justify-content: center;
+  box-shadow: 0 0 20px rgba(0,0,0,.5);
+  background-color: rgba(15,15,15,0.92);
+  border: 1px solid var(--dim2);
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  transition: all .5s;
+}
+.islandbar ul.bar-active{ opacity: 0.72; }
+.islandbar li a{
+  position: relative; z-index: 2;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .06em;
+  color: var(--dim); text-transform: lowercase;
+  padding: .85em 1.1em; margin: 2px; border-radius: 6px;
+  overflow: hidden; text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+.islandbar li a:hover{ color: var(--white); }
+.islandbar li.bar-main a{
+  color: var(--white); font-family: var(--comic); font-size: 13px;
+  transition: filter .3s ease;
+}
+.islandbar li.bar-main a:hover{
+  cursor: pointer;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.readme{ max-width: 900px; margin: 0 auto; padding: 120px 32px 10px; }
+@media screen and (max-width:600px){ .readme{ padding-top: 78px; } }
+
+.kicker{
+  font-family: var(--pixel); font-size: 13px; color: var(--dim);
+  letter-spacing: .12em; text-transform: lowercase; margin-bottom: 16px;
+}
+
+h1.island-h1{
+  font-family: var(--en); font-weight: normal;
+  font-size: 52px; letter-spacing: -0.01em; line-height: 1.2;
+  margin: 0 0 6px;
+}
+.island-h1-zh{
+  font-family: var(--zh); font-weight: 700; font-size: 15px;
+  color: var(--pink); letter-spacing: .3em; margin-bottom: 30px;
+}
+@media screen and (max-width:600px){ h1.island-h1{ font-size: 32px; } }
+
+p.verse{
+  font-family: var(--en); font-style: italic; font-size: 15px;
+  letter-spacing: .01em; line-height: 2; color: var(--dim); max-width: 560px;
+}
+p.cn{
+  font-family: var(--zh); font-size: 15px; letter-spacing: .04em;
+  line-height: 2.1; color: #cfcfcf; max-width: 560px;
+}
+p.cn strong{ color: var(--white); font-weight: 700; }
+p.cn a{ color: var(--blue); border-bottom: 1px solid rgba(85,205,252,.35); transition: border-color .25s ease, color .25s ease; }
+p.cn a:hover{ border-color: var(--blue); }
+@media screen and (max-width:600px){ p.verse, p.cn{ font-size: 13px; } }
+
+.maincontainer{ max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+/* meta rows (about-style key/value, island flavor) */
+.island-meta{
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px 40px; max-width: 560px; margin: 30px 0 10px;
+  padding-top: 22px; border-top: 1px solid var(--dim2);
+}
+@media screen and (max-width:600px){ .island-meta{ grid-template-columns: 1fr; } }
+.island-meta .k{ font-family: var(--comic); font-size: 10px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
+.island-meta .v{ font-family: var(--en); font-size: 14px; color: var(--white); margin-top: 2px; }
+.island-meta .v.zh{ font-family: var(--zh); font-weight: 700; font-size: 13px; }
+
+/* contact-me row, ported from A, recolored */
+.contact-me{ display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
+.contact-me a{
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+  padding: 10px 14px; border-left: 3px solid; border-radius: 4px;
+  background: rgba(255,255,255,0.02); transition: all .2s;
+}
+.contact-me a:hover{ transform: translateX(-3px); background: rgba(255,255,255,0.05); }
+.contact-me a.c1{ border-color: var(--blue); }
+.contact-me a.c2{ border-color: var(--pink); }
+.contact-me a.c3{ border-color: #777; }
+.contact-me a.c4{ border-color: var(--white); }
+.contact-me a.c5{ border-color: var(--blue); }
+.contact-me span{ font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--dim); transition: color .3s; }
+.contact-me a:hover span{ color: var(--white); }
+.contact-me a>span::after{ content: ' >>'; opacity: 0; transition: .3s; }
+.contact-me a:hover span::after{ opacity: 1; }
+
+/* islandlinks list, ported from A's links.css, recolored & reusable for
+   works / link groups / explore section */
+.islandlinks ul{ list-style:none; margin: 0; padding: 0; }
+.islandlinks li{ position: relative; margin: 14px 0; border-left: 3px solid var(--blue); z-index: 0; }
+.islandlinks li:nth-child(3n+2){ border-color: var(--pink); }
+.islandlinks li:nth-child(3n){ border-color: var(--white); }
+.islandlinks li a.items{ display:block; position: relative; padding: 16px 20px; text-decoration: none; overflow: hidden; }
+.islandlinks li a.items strong{
+  font-family: var(--en); font-size: 18px; color: var(--white);
+  letter-spacing: .01em; position: relative; z-index: 1; transition: color .3s;
+}
+.islandlinks li a.items em{
+  display:block; font-family: var(--zh); font-weight: 700; font-size: 11px;
+  font-style: normal; color: var(--dim); margin-top: 3px; position: relative; z-index: 1;
+  transition: color .3s;
+}
+.islandlinks li a.items span.arrow{
+  float: right; font-family: var(--zh); font-size: 13px; color: var(--dim);
+  position: relative; z-index: 1; opacity: 0; transform: translateX(0); transition: all .4s;
+}
+.islandlinks li:hover a.items span.arrow{ opacity: 1; transform: translateX(6px); color: #04141a; }
+.islandlinks li:hover a.items strong,
+.islandlinks li:hover a.items em{ color: #04141a; }
+.islandlinks li a.items::before{
+  content:''; z-index:0; position:absolute; top:0; left:0;
+  background-color: var(--blue); width:0; height:100%; transition: .18s all ease-in-out;
+}
+.islandlinks li:nth-child(3n+2) a.items::before{ background-color: var(--pink); }
+.islandlinks li:nth-child(3n) a.items::before{ background-color: var(--white); }
+.islandlinks li:hover a.items::before{ width: 100%; }
+
+.island-sub{
+  font-family: var(--pixel); font-size: 14px; letter-spacing: .1em;
+  text-transform: lowercase; color: var(--blue); margin: 40px 0 14px;
+}
+.island-sub:first-of-type{ margin-top: 30px; }
+
+.islandbottom{
+  max-width: 900px; margin: 60px auto 0; padding: 22px 32px 60px;
+  border-top: 1px solid var(--dim2);
+}
+.islandbottom ul{ list-style:none; margin: 0; padding: 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.islandbottom a{ font-family: var(--mono); font-size: 11px; color: var(--dim); text-decoration: none; opacity: .8; transition: color .25s; }
+.islandbottom a:hover{ color: var(--white); }
+
+</style>
 </head>
-<body>
+<body class="fade-in">
 
 <div class="stripe"></div>
+<div class="bgwrap"><div class="cover"></div></div>
 
-<header>
-  <a href="./index.html" class="site-id" style="text-decoration:none">
-    <div class="site-en">Hayakawa Sauta</div>
-    <div class="site-zh">早川　咲詩</div>
-  </a>
-  <nav>
-    <a href="./Home.html">blog</a>
-    <a href="./About.html">about</a>
-    <a href="./Works.html" class="active">works</a>
-    <a href="./Link.html">links</a>
-  </nav>
-</header>
+<div class="islandbar">
+  <ul class="topbar" id="topbar">
+    <li><a href="Home.html">主页</a></li>
+    <li><a href="Blog.html">blog</a></li>
+    <li><a href="About.html">about</a></li>
+    <li class="bar-main"><a href="javascript:void(0)">works</a></li>
+    <li><a href="Link.html">links</a></li>
+  </ul>
+</div>
 
-<div class="works-wrap fade-in">
-  <a class="back-link" href="./Home.html">back</a>
 
-  <div class="sec-head">
-    <div class="sec-title">works</div>
-    <div class="sec-count">discography &amp; projects</div>
-  </div>
+<div class="readme">
+  <div class="kicker">// discography &amp; projects</div>
+  <h1 class="island-h1">Works</h1>
+  <div class="island-h1-zh">作品</div>
 
-  <p class="works-note">
+  <p class="verse">
     Music produced, co-produced, or otherwise contributed to.<br>
     Fill in as needed — this is a living list.
   </p>
+</div>
 
-  <!-- SINGLES / ORIGINALS -->
-  <div class="cat-label">originals</div>
-  <div class="works-list stagger">
+<div class="maincontainer islandlinks">
+  <div class="island-sub">originals</div>
+  <ul>
+    <li>
+      <a class="items" href="https://www.youtube.com/watch?v=B-3yo7AlStU">
+        <span class="arrow">▶ listen &gt;&gt;</span>
+        <strong>THAT TYPE OF HYPER JIRAI MUSIC</strong>
+        <em>hyperpop · hyperflip · dariacore · sautacore · 2025 · single</em>
+      </a>
+    </li>
+    <li style="opacity:.35; pointer-events:none;">
+      <a class="items" href="javascript:void(0)">
+        <span class="arrow">— &gt;&gt;</span>
+        <strong>(upcoming)</strong>
+        <em>w.i.p. · 2025</em>
+      </a>
+    </li>
+  </ul>
 
-    <div class="work-row" onclick="openYoutubeVideo('carcrashn siren', 'https://www.youtube-nocookie.com/embed/B-3yo7AlStU?si=9vN3-4DjMe4gbxkR')">
-      <!-- openVideo('carcrashn siren', './sounds/sakuramain.ogg') -->
-      <div class="work-num">001</div>
-      <div>
-        <div class="work-title">THAT TYPE OF HYPER JIRAI MUSIC</div>
-        <div class="work-sub">hyperpop · hyperflip · dariacore · sautacore</div>
-      </div>
-      <div class="work-meta">
-        2025<br>single<br>
-        <a href="#" onclick="event.stopPropagation()" style="pointer-events:none; opacity:0.3">↗ stream</a>
-      </div>
-    </div>
+  <div class="island-sub">label &amp; compilations</div>
+  <ul>
+    <li>
+      <a class="items" href="javascript:void(0)">
+        <span class="arrow">ongoing &gt;&gt;</span>
+        <strong>PASAU SOUND</strong>
+        <em>founder · label</em>
+      </a>
+    </li>
+    <li>
+      <a class="items" href="javascript:void(0)">
+        <span class="arrow">ongoing &gt;&gt;</span>
+        <strong>Mousedown Records</strong>
+        <em>co-founder · label</em>
+      </a>
+    </li>
+  </ul>
+</div>
 
-    <div class="work-row" style="opacity:0.25; pointer-events:none; cursor:default">
-      <div class="work-num">002</div>
-      <div>
-        <div class="work-title">— (upcoming)</div>
-        <div class="work-sub">w.i.p.</div>
-      </div>
-      <div class="work-meta">2025<br>—</div>
-    </div>
+<div class="islandbottom">
+  <ul>
+    <li><a href="Blog.html">回到聲域的起點。</a></li>
+    <li><a href="Blog.html">back to blog</a></li>
+  </ul>
+</div>
 
-  </div>
-
-  <!-- VIDEO PLAYER SECTION (DPlayer) -->
-  <div class="video-section">
-    <div class="video-section-head">
-      <div class="sec-title" style="color: var(--pink)">video</div>
-      <div class="sec-count" id="dp-label">click a work above to load</div>
-    </div>
-    <div id="dplayer-container"></div>
-    <div class="dplayer-notice">
-      <!--
-        DPlayer — https://github.com/DIYgod/DPlayer
-        Replace video.url below with your actual video file path or stream URL.
-        Supports: mp4, webm, ogg, hls (.m3u8), dash (.mpd)
-        Example: url: 'https://your-cdn.com/carcrashn.mp4'
-      -->
-    </div>
-  </div>
-
-  <!-- LABELS / COMPILATIONS -->
-  <div class="cat-label">label &amp; compilations</div>
-  <div class="works-list stagger">
-
-    <div class="work-row">
-      <div class="work-num">—</div>
-      <div>
-        <div class="work-title">PASAU SOUND</div>
-        <div class="work-sub">founder · label</div>
-      </div>
-      <div class="work-meta">
-        ongoing<br>label
-      </div>
-    </div>
-
-    <div class="work-row">
-      <div class="work-num">—</div>
-      <div>
-        <div class="work-title">Mousedown Records <span class="collab">co-founder</span></div>
-        <div class="work-sub">co-founded</div>
-      </div>
-      <div class="work-meta">
-        ongoing<br>label
-      </div>
-    </div>
-
-  </div>
-
-</div><!-- /works-wrap -->
-
-<footer>
-  <div class="footer-left">
-    <span class="zh">早川咲詩</span><br>
-    Hayakawa Sauta
-    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
-  </div>
-  <div class="footer-right">
-    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
-    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
-    <span class="footer-copy">© 2025 sauta</span>
-  </div>
-</footer>
 
 <div class="stripe"></div>
-
-<!-- APlayer -->
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<script src="./js/player-init.js"></script>
-
-<!-- DPlayer -->
-<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
 <script>
-  var dp = null;
-
-  function openVideo(title, videoUrl) {
-    var container = document.getElementById('dplayer-container');
-    var label     = document.getElementById('dp-label');
-
-    // destroy previous instance
-    if (dp) { dp.destroy(); dp = null; }
-
-    label.textContent = title;
-    container.style.minHeight = '320px';
-
-    // pause APlayer if running
-    if (window.sautaPlayer) window.sautaPlayer.pause();
-
-    dp = new DPlayer({
-      container: container,
-      theme: '#55CDFC',
-      lang: 'zh-cn',
-      screenshot: false,
-      hotkey: true,
-      preload: 'auto',
-      logo: './images/sautaLOGO.png',
-      video: {
-        url: videoUrl,     // ← replace with actual video URL when available
-        // type: 'auto',   // 'auto' | 'hls' | 'dash' | 'flv' | 'webtorrent'
-        pic: './images/sautaLOGO.png',
-      },
-      // danmaku: false,   // disable barrage (optional)
-    });
-
-    // scroll to player
-    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  function openYoutubeVideo(title, videoUrl) {
-    var container = document.getElementById('dplayer-container');
-    var label     = document.getElementById('dp-label');
-    label.textContent = title;
-    container.style.minHeight = '320px';
-    container.innerHTML = '<iframe width="560" height="315" src="' + videoUrl + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
-  }
+window.addEventListener('scroll', function(){
+  var dt = document.documentElement.scrollTop || document.body.scrollTop;
+  var bar = document.getElementById('topbar');
+  if(dt !== 0){ bar.classList.add('bar-active'); }
+  else{ bar.classList.remove('bar-active'); }
+});
 </script>
-
 </body>
 </html>

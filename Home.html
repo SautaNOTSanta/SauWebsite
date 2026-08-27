@@ -1,255 +1,1194 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>早川咲詩 — blog</title>
-  <meta name="description" content="Hayakawa Sauta — music producer blog.">
-  <link rel="stylesheet" href="./css/custom.css">
-  <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早川咲詩 / 欢迎入海！</title>
+<meta name="description" content="你发现了信息之海中的一道潮声。这里会有些什么呢？">
+<meta name="keywords" content="早川咲詩 Sauta 音乐制作人 digicore hyperpop PASAU SOUND">
+<style>
+/* ===== real site base stylesheet (custom.css) ===== */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — custom.css
+   design: GPT × Sauta, 2025 — rev. 2
+   ═══════════════════════════════════════════ */
+
+/* ─── FONTS ─── */
+@font-face {
+  font-family: 'ChillBitmap';
+  src: url('./iconfont/ChillBitmap7x.woff2') format('woff2'),
+       url('./iconfont/ChillBitmap7x.ttf')   format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ComicSans';
+  src: url('./iconfont/comic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── TOKENS ─── */
+:root {
+  --black:    #080808;
+  --offblack: #0f0f0f;
+  --white:    #ebebeb;
+  --dim:      #555;
+  --dim2:     #222;
+  --blue:     #55CDFC;
+  --pink:     #F7A8B8;
+  --gradient: linear-gradient(90deg, var(--blue), var(--pink), #fff);
+
+  --en:     'Times New Roman', Georgia, serif;
+  --zh:     'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  --mono:   'Courier New', monospace;
+  --pixel:  'ChillBitmap', 'Courier New', monospace;  /* 寒蝉点阵体 — used for labels & section marks */
+  --comic:  'ComicSans', 'Comic Sans MS', cursive;    /* used sparingly for playful accents */
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--en);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── TRANS STRIPE ─── */
+.stripe {
+  width: 100%;
+  height: 3px;
+  background: var(--gradient);
+  flex-shrink: 0;
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ─── SECTION HEADER ─── */
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dim2);
+}
+
+.sec-title {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--white);
+  image-rendering: pixelated;
+}
+
+.sec-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+}
+
+/* ─── TAGS ─── */
+.tag {
+  display: inline-block;
+  font-family: var(--comic);
+  font-size: 11px;
+  color: var(--dim);
+  border: 1px solid var(--dim2);
+  padding: 1px 8px;
+  letter-spacing: 0.03em;
+}
+
+.tag.blue { color: var(--blue); border-color: rgba(85,205,252,0.25); }
+.tag.pink { color: var(--pink); border-color: rgba(247,168,184,0.25); }
+
+/* ─── STATUS DOT ─── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  margin-bottom: 20px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  animation: pulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--dim2);
+  margin: 0 32px;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-left {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 2;
+}
+
+.footer-left .zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--white);
+}
+
+.footer-right {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-right a { color: var(--dim); transition: color 0.15s; }
+.footer-right a:hover { color: var(--pink); }
+
+.footer-copy { margin-top: 8px; color: var(--dim2); }
+
+/* ─── PIXEL DECO LINE ─── */
+.pixel-rule {
+  font-family: var(--pixel);
+  font-size: 14px;
+  color: var(--dim2);
+  letter-spacing: 0.05em;
+  user-select: none;
+  margin: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ─── HORIZONTAL RULE ─── */
+hr.thin {
+  border: none;
+  height: 1px;
+  background: var(--dim2);
+}
+
+/* ─── CONTENT GRID (blog + sidebar) ─── */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  gap: 0;
+  align-items: start;
+}
+
+.main-col {
+  border-right: 1px solid var(--dim2);
+  padding-right: 40px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.side-col {
+  padding-left: 32px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+/* ─── SIDEBAR WIDGETS ─── */
+.widget { margin-bottom: 36px; }
+
+.widget-title {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--dim);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--dim2);
+}
+
+/* profile rows */
+.profile-block {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.profile-key {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.profile-val {
+  font-family: var(--en);
+  font-size: 11px;
+  color: var(--white);
+  text-align: right;
+}
+.profile-val.zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* currently */
+.currently-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curr-label {
+  font-family: var(--comic);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.curr-value {
+  font-family: var(--en);
+  font-size: 12px;
+  color: var(--white);
+  font-style: italic;
+}
+.curr-value.zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 11px;
+}
+
+/* now-playing live update */
+#now-playing {
+  transition: opacity 0.3s, color 0.3s;
+}
+
+/* ext links */
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ext-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  transition: color 0.15s;
+}
+.ext-link::before { content: '→'; font-size: 10px; color: var(--dim2); transition: color 0.15s; }
+.ext-link:hover { color: var(--white); }
+.ext-link:hover::before { color: var(--blue); }
+
+/* ─── BLOG POST LIST ─── */
+.post-list { display: flex; flex-direction: column; gap: 0; }
+
+.post-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--dim2);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.post-item:last-child { border-bottom: none; }
+.post-item:hover .post-title { color: var(--blue); }
+.post-item:hover .post-title-zh { color: var(--dim); }
+
+.post-date {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-lang {
+  font-family: var(--comic);
+  font-size: 10px;
+  border: 1px solid rgba(247,168,184,0.25);
+  color: var(--pink);
+  padding: 0 5px;
+}
+.post-lang.en { color: var(--blue); border-color: rgba(85,205,252,0.25); }
+
+.post-title {
+  font-family: var(--en);
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  transition: color 0.15s;
+}
+
+.post-title-zh {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--dim);
+  margin-bottom: 10px;
+  transition: color 0.15s;
+}
+
+.post-excerpt {
+  font-size: 13px;
+  color: var(--dim);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.post-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--comic);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--blue);
+  opacity: 0.7;
+}
+.post-tag::before { content: '# '; }
+
+/* ─── WORKS LIST ─── */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dim2);
+  margin-bottom: 12px;
+}
+
+.work-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #1a1a1a;
+  transition: background 0.15s;
+  gap: 24px;
+  cursor: pointer;
+}
+.work-row:last-child { border-bottom: none; }
+.work-row:hover { background: rgba(255,255,255,0.02); }
+.work-row:hover .work-title { color: var(--blue); }
+
+.work-num {
+  font-family: var(--pixel);
+  font-size: 14px;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: 0.05em;
+}
+
+.work-title {
+  font-family: var(--en);
+  font-size: 14px;
+  transition: color 0.15s;
+  line-height: 1.3;
+}
+
+.work-sub {
+  font-family: var(--zh);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 3px;
+}
+
+.work-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  text-align: right;
+  line-height: 1.9;
+}
+
+.work-meta a {
+  color: var(--pink);
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+.work-meta a:hover { opacity: 1; }
+
+/* collab badge */
+.collab {
+  font-family: var(--comic);
+  font-size: 9px;
+  color: var(--dim);
+  border: 1px solid #2a2a2a;
+  padding: 1px 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ─── CAT LABEL (works page section headers) ─── */
+.cat-label {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--blue);
+  margin: 36px 0 16px;
+}
+.cat-label:first-of-type { margin-top: 0; }
+
+/* ─── BACK LINK ─── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+  transition: color 0.15s;
+}
+.back-link::before { content: '←'; }
+.back-link:hover { color: var(--white); }
+
+/* ─── APLAYER DARK OVERRIDE ─── */
+.aplayer {
+  background: rgba(10,10,10,0.98) !important;
+  border: 1px solid var(--dim2) !important;
+  border-bottom: none !important;
+  box-shadow: 0 -2px 28px rgba(0,0,0,0.7) !important;
+  border-radius: 0 !important;
+  font-family: var(--mono) !important;
+}
+.aplayer * { border-radius: 0 !important; }
+.aplayer .aplayer-body { background: transparent !important; }
+.aplayer .aplayer-pic { border-right: 1px solid var(--dim2) !important; }
+.aplayer .aplayer-name { color: var(--white) !important; font-family: var(--en) !important; font-style: italic; }
+.aplayer .aplayer-author { color: var(--pink) !important; font-family: var(--mono) !important; font-size: 10px !important; }
+.aplayer .aplayer-time { color: var(--dim) !important; font-family: var(--mono) !important; font-size: 10px !important; }
+.aplayer .aplayer-time-inner { color: var(--dim) !important; }
+.aplayer .aplayer-bar-wrap { padding: 0 !important; }
+.aplayer .aplayer-bar { background: var(--dim2) !important; height: 2px !important; }
+.aplayer .aplayer-loaded { background: rgba(85,205,252,0.12) !important; }
+.aplayer .aplayer-played { background: var(--blue) !important; }
+.aplayer .aplayer-thumb { background: var(--blue) !important; box-shadow: none !important; }
+.aplayer .aplayer-volume-bar { background: var(--dim2) !important; }
+.aplayer .aplayer-volume { background: var(--blue) !important; }
+.aplayer svg path { fill: var(--dim) !important; transition: fill 0.15s; }
+.aplayer .aplayer-icon:hover svg path { fill: var(--white) !important; }
+.aplayer .aplayer-icon-play svg path { fill: var(--white) !important; }
+.aplayer .aplayer-list { background: rgba(8,8,8,0.99) !important; border-top: 1px solid var(--dim2) !important; }
+.aplayer .aplayer-list li { color: var(--dim) !important; border-bottom: 1px solid #1a1a1a !important; font-family: var(--mono) !important; font-size: 11px !important; }
+.aplayer .aplayer-list li:hover { background: rgba(255,255,255,0.025) !important; }
+.aplayer .aplayer-list li.aplayer-list-light { background: rgba(85,205,252,0.04) !important; }
+.aplayer .aplayer-list li span.aplayer-list-cur { background: var(--blue) !important; }
+.aplayer .aplayer-list li .aplayer-list-index { color: rgba(255,255,255,0.15) !important; }
+.aplayer .aplayer-list li .aplayer-list-author { color: var(--dim2) !important; }
+.aplayer-fixed-controller {
+  background: var(--black) !important;
+  border: 1px solid var(--dim2) !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6) !important;
+  border-radius: 0 !important;
+}
+.aplayer-fixed-controller svg path { fill: var(--blue) !important; }
+
+/* ─── DPLAYER DARK OVERRIDE ─── */
+.dplayer-container {
+  border: 1px solid var(--dim2);
+  background: #000 !important;
+}
+.dplayer-controller { background: linear-gradient(transparent, rgba(0,0,0,0.85)) !important; }
+.dplayer-played { background: var(--blue) !important; }
+.dplayer-thumb { background: var(--blue) !important; box-shadow: none !important; }
+.dplayer-volume-bar-inner { background: var(--pink) !important; }
+.dplayer-comment-input { font-family: var(--mono) !important; background: var(--offblack) !important; color: var(--white) !important; border: 1px solid var(--dim2) !important; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 700px) {
+  .page-wrap { padding: 0 16px; }
+
+  header { padding: 0 16px; }
+  nav { gap: 14px; }
+  nav a { font-size: 10px; }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-col {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 32px;
+  }
+  .side-col {
+    padding-left: 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--dim2);
+  }
+
+  footer {
+    margin: 0 16px;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer-right { text-align: left; }
+
+  .work-row {
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+  }
+  .work-meta { display: none; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .about-label-col { display: none; }
+
+  .links-grid { grid-template-columns: 1fr; }
+
+  .aplayer.aplayer-fixed { bottom: 0 !important; }
+}
+
+/* ─── STAGGER ANIMATION (extended) ─── */
+.stagger > *:nth-child(7)  { animation-delay: 0.35s; }
+.stagger > *:nth-child(8)  { animation-delay: 0.40s; }
+.stagger > *:nth-child(9)  { animation-delay: 0.45s; }
+.stagger > *:nth-child(10) { animation-delay: 0.50s; }
+.stagger > *:nth-child(11) { animation-delay: 0.55s; }
+.stagger > *:nth-child(12) { animation-delay: 0.60s; }
+
+/* ===== real site header.css ===== */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — header.css — rev.2
+   ═══════════════════════════════════════════ */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 52px;
+  background: rgba(8, 8, 8, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.site-id {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.site-en {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #ebebeb;
+}
+
+.site-zh {
+  font-family: 'ChillBitmap', 'Microsoft YaHei', sans-serif;
+  font-size: 11px;
+  color: #F7A8B8;
+  letter-spacing: 0.22em;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+nav a {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: #555;
+  text-transform: lowercase;
+  transition: color 0.15s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #55CDFC;
+  transition: width 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #ebebeb;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+nav a:nth-child(2)::after { background: #F7A8B8; }
+nav a:nth-child(4)::after { background: #F7A8B8; }
+
+/* active nav item gets comic font for personality */
+nav a.active {
+  font-family: 'ComicSans', 'Comic Sans MS', cursive;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+/* ===== real site animations.css ===== */
+/* ═══════════════════════════════════════════
+   sauta.trancymzk.xyz — animations.css
+   ═══════════════════════════════════════════ */
+
+/* fade-in on load */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.fade-in-slow {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+/* staggered children */
+.stagger > * {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+
+
+  /* ===== page-local: island-style landing, ported from shiori-net.work,
+     re-skinned with Sauta's real dark / blue-pink identity ===== */
+
+  h1 {
+    font-family: var(--en);
+    font-weight: normal;
+    font-size: 64px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 42px;
+  }
+  p.verse {
+    font-family: var(--en);
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    line-height: 2;
+    color: var(--dim);
+    max-width: 560px;
+  }
+  p.cn {
+    font-family: var(--zh);
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    line-height: 2.1;
+    color: #cfcfcf;
+    max-width: 560px;
+  }
+  p.cn strong { color: var(--white); font-weight: 700; }
+  p.cn a {
+    color: var(--blue);
+    border-bottom: 1px solid rgba(85,205,252,0.35);
+    transition: border-color .25s ease, color .25s ease;
+  }
+  p.cn a:hover { border-color: var(--blue); }
+
+  @media screen and (max-width: 600px){
+    h1 { font-size: 38px; margin-bottom: 28px; }
+    p.verse, p.cn { font-size: 14px; }
+  }
+
+  /* ---- background ---- */
+  .bgwrap{
+    position: fixed; inset: 0; z-index: -1;
+    background: var(--black);
+  }
+  .bgwrap .cover{
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 45% at 12% -8%, rgba(85,205,252,0.10), transparent 60%),
+      radial-gradient(ellipse 55% 40% at 92% 8%, rgba(247,168,184,0.09), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 50% 115%, rgba(255,255,255,0.03), transparent 60%);
+    animation: onReadyBg 2.4s cubic-bezier(.19,1,.22,1);
+  }
+  @keyframes onReadyBg { 0%{filter:blur(60px);opacity:0;} 100%{filter:blur(0);opacity:1;} }
+
+  /* ---- floating pill nav (ported from shiori's .bar/.topbar) ---- */
+  .islandbar{
+    position: fixed;
+    top: 10px; left: 0; right: 0;
+    z-index: 50;
+    display: flex; justify-content: center;
+    transition: all .3s;
+  }
+  .islandbar ul{
+    list-style: none;
+    display: flex;
+    margin: 0; padding: 6px 10px;
+    width: 98%; max-width: 480px;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0,0,0,.5);
+    background-color: rgba(15,15,15,0.92);
+    border: 1px solid var(--dim2);
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    transition: all .5s;
+  }
+  .islandbar ul.bar-active{ opacity: 0.72; }
+  .islandbar li a{
+    position: relative;
+    z-index: 2;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--dim);
+    text-transform: lowercase;
+    padding: .85em 1.1em;
+    margin: 2px;
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+  .islandbar li a:hover{ color: var(--white); }
+  .islandbar li.bar-main a{
+    color: var(--white);
+    font-family: var(--comic);
+    font-size: 13px;
+    transition: filter .3s ease;
+  }
+  .islandbar li.bar-main a:hover{
+    cursor: pointer;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* ---- hero container ---- */
+  .readme{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 130px 32px 10px;
+  }
+  @media screen and (max-width:600px){ .readme{ padding-top: 78px; } }
+
+  .kicker{
+    font-family: var(--pixel);
+    font-size: 13px;
+    letter-spacing: .12em;
+    color: var(--dim);
+    text-transform: lowercase;
+    margin-bottom: 16px;
+  }
+
+  .rollatag, .addatag{
+    color: var(--pink) !important;
+    border-bottom: 1px solid rgba(247,168,184,0.4);
+    cursor: pointer;
+    transition: border-color .25s ease;
+  }
+  .rollatag:hover, .addatag:hover{ border-color: var(--pink); }
+
+  /* ---- roll-tag (ported verbatim in spirit from A's rolltag.css) ---- */
+  .roll-tag{
+    display: none;
+    transition: .1s all;
+    width: 100%;
+    position: relative;
+    height: 64px;
+    margin: 4px 0 4px;
+  }
+  .roll-tag.active{ display: inline-block; }
+  .roll-tag span{
+    position: absolute;
+    animation: tag-entering .1s ease-in-out;
+    box-shadow: 0 0 20px rgba(0,0,0,.5);
+    background-color: #101010;
+    border: 1px solid var(--dim2);
+    color: var(--white);
+    font-family: var(--zh);
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 9px 16px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .roll-tag span::before{ content:'#'; margin-right:5px; color: var(--blue); }
+  .roll-tag span.removing{ animation: tag-removing .1s ease-in-out; }
+  @keyframes tag-entering{ 0%{ transform:translateY(-10px); opacity:0; } 100%{ opacity:1; transform:translateY(0); } }
+  @keyframes tag-removing{ 0%{ transform:translateY(0); opacity:1; } 100%{ opacity:0; transform:translateY(10px); } }
+  @media screen and (max-width:700px){ .roll-tag span{ white-space: normal; } }
+
+  .notenough{ font-size: 14px !important; opacity: .7; margin-top: 2px; }
+
+  .noadd{
+    display: none;
+    transition: .1s all;
+    width: 100%;
+    position: relative;
+    height: 60px;
+    margin-bottom: 6px;
+  }
+  .noadd.active{ display: inline-block; }
+  .noadd span{
+    font-family: var(--zh);
+    font-size: 13px;
+    color: var(--dim);
+    position: absolute;
+    animation: tag-entering .5s ease-in-out;
+    display: inline-block;
+    max-width: 520px;
+  }
+
+  .maincontainer{ max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---- contact-me (ported from A, recolored) ---- */
+  .contact-me{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .contact-me a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-left: 3px solid;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.02);
+    transition: all .2s;
+  }
+  .contact-me a:hover{ transform: translateX(-3px); background: rgba(255,255,255,0.05); }
+  .contact-me a.twi{ border-color: var(--blue); }
+  .contact-me a.bili{ border-color: var(--pink); }
+  .contact-me a.gith{ border-color: #777; }
+  .contact-me a.more{ border-color: var(--white); }
+  .contact-me svg{ width: 22px; height: 22px; }
+  .contact-me svg path{ fill: var(--dim); transition: fill .2s; }
+  .contact-me a:hover svg path{ fill: var(--white); }
+  .contact-me span{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .04em;
+    color: var(--dim);
+    transition: color .3s;
+  }
+  .contact-me a:hover span{ color: var(--white); }
+  .contact-me a>span::after{
+    content: ' >>';
+    opacity: 0;
+    transition: .3s;
+  }
+  .contact-me a:hover span::after{ opacity: 1; }
+
+  /* ---- links list (ported from A's links.css, recolored) ---- */
+  .islandlinks ul{ list-style:none; margin: 0; padding: 0; }
+  .islandlinks li{
+    position: relative;
+    margin: 18px 0;
+    border-left: 3px solid var(--blue);
+    z-index: 0;
+  }
+  .islandlinks li:nth-child(2){ border-color: var(--pink); }
+  .islandlinks li:nth-child(3){ border-color: var(--white); }
+  .islandlinks li a.items{
+    display:block;
+    position: relative;
+    padding: 18px 20px;
+    text-decoration: none;
+    overflow: hidden;
+  }
+  .islandlinks li a.items strong{
+    font-family: var(--en);
+    font-size: 21px;
+    color: var(--white);
+    letter-spacing: .01em;
+    position: relative; z-index: 1;
+    transition: color .3s;
+  }
+  .islandlinks li a.items span{
+    float: right;
+    font-family: var(--zh);
+    font-size: 13px;
+    color: var(--dim);
+    position: relative; z-index: 1;
+    opacity: 0;
+    transform: translateX(0);
+    transition: all .4s;
+  }
+  .islandlinks li:hover a.items span{ opacity: 1; transform: translateX(6px); color: #04141a; }
+  .islandlinks li:hover a.items strong{ color: #04141a; }
+  .islandlinks li a.items::before{
+    content:'';
+    z-index:0;
+    position:absolute; top:0; left:0;
+    background-color: var(--blue);
+    width:0; height:100%;
+    transition: .18s all ease-in-out;
+  }
+  .islandlinks li:nth-child(2) a.items::before{ background-color: var(--pink); }
+  .islandlinks li:nth-child(3) a.items::before{ background-color: var(--white); }
+  .islandlinks li:hover a.items::before{ width: 100%; }
+
+  /* ---- bottombar ---- */
+  .islandbottom{
+    max-width: 900px; margin: 60px auto 0; padding: 22px 32px 60px;
+    border-top: 1px solid var(--dim2);
+  }
+  .islandbottom ul{
+    list-style:none; margin: 0; padding: 0;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  .islandbottom a{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    text-decoration: none;
+    opacity: .8;
+    transition: color .25s;
+  }
+  .islandbottom a:hover{ color: var(--white); }
+</style>
 </head>
-<body>
+<body class="fade-in">
 
 <div class="stripe"></div>
 
-<!-- HEADER -->
-<header>
-  <a href="./index.html" class="site-id" style="text-decoration:none">
-    <div class="site-en">Hayakawa Sauta</div>
-    <div class="site-zh">早川　咲詩</div>
-  </a>
-  <nav>
-    <a href="./Home.html" class="active">blog</a>
-    <a href="./About.html">about</a>
-    <a href="./Works.html">works</a>
-    <a href="./Link.html">links</a>
-  </nav>
-</header>
+<div class="bgwrap"><div class="cover"></div></div>
 
-<!-- MAIN -->
-<div class="page-wrap">
+<div class="islandbar">
+  <ul class="topbar" id="topbar">
+    <li class="bar-main"><a href="javascript:void(0)">主页</a></li>
+    <li><a href="Blog.html">blog</a></li>
+    <li><a href="About.html">about</a></li>
+    <li><a href="Works.html">works</a></li>
+    <li><a href="Link.html">links</a></li>
+  </ul>
+</div>
 
-  <!-- HERO -->
-  <div style="
-    padding: 60px 0 44px;
-    border-bottom: 1px solid #222;
-  " class="fade-in">
-    <div style="
-      font-family: var(--pixel);
-      font-size: 14px;
-      color: var(--dim);
-      letter-spacing: 0.12em;
-      text-transform: lowercase;
-      margin-bottom: 18px;
-    ">// music producer · subculture · china</div>
+<div class="readme">
+  <div class="kicker">// music producer · subculture · china</div>
+  <h1 id="slogan">Hayakawa Sauta</h1>
 
-    <h1 style="
-      font-family: var(--en);
-      font-size: clamp(34px, 5.5vw, 62px);
-      font-weight: normal;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-    ">Hayakawa Sauta</h1>
+  <p class="verse">
+    Sound doesn't wash up as an island of its own,<br>
+    every note returns, sooner or later, to the tide.
+  </p>
+  <p class="cn" style="margin-top:22px;">
+    欢迎来到这片位于互联网上的<strong>声域</strong>：但此刻，这片声域<strong>并不寂静</strong>。
+  </p>
+  <p class="cn">
+    你可以称呼站主为<strong>咲詩 / 早川咲詩</strong>，但请你自己去探索有关他的一切：这个怕生的家伙并不擅长自我介绍。
+  </p>
+  <p class="cn">
+    或者你也可以<a href="javascript:rollOnce()" class="rollatag">点击这里</a>，也许可以得到有关站主的一个小标签。
+  </p>
+  <div class="roll-tag" id="rollTag"></div>
+  <p class="cn notenough">
+    没有找到想要的？<a href="javascript:addATag()" class="addatag">戳这里为站主贴一个标签</a>
+  </p>
+  <div class="noadd" id="noAdd"></div>
+</div>
 
-    <div style="
-      font-family: var(--zh);
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--pink);
-      letter-spacing: 0.35em;
-      margin-bottom: 22px;
-    ">早川　咲詩</div>
+<div class="maincontainer" style="margin-top:50px; margin-bottom:26px;">
+  <p class="cn">很期待有一天能在无夜的潮声里与你相遇！</p>
+  <p class="cn">你也可以在这里找到站主的一些踪迹：</p>
+</div>
 
-    <p style="
-      font-family: var(--en);
-      font-size: 13px;
-      color: var(--dim);
-      font-style: italic;
-      max-width: 480px;
-      line-height: 2;
-      border-left: 2px solid #222;
-      padding-left: 16px;
-    ">
-      Music producer. China-based, Vietnam-rooted.<br>
-      Founder of PASAU SOUND · co-Founder of Mousedown Records.<br>
-      Subculture enthusiast. Weeb.
-    </p>
-
-    <div style="
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    ">
-      <span class="tag blue">FL Studio</span>
-      <span class="tag">Bitwig</span>
-      <span class="tag">REAPER</span>
-      <span class="tag pink">digicore</span>
-      <span class="tag pink">hyperpop</span>
-    </div>
+<div class="maincontainer">
+  <div class="contact-me">
+    <a class="twi" href="https://twitter.com/s4u7a" target="_blank" rel="noopener">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M673.5 143.5c54.7-2.6 107.8 18.7 145.4 58.5 33-5.3 64.9-16.2 94.2-32.2l22.9-12.7c-11.1 34.3-31.8 64.7-59.7 87.5-6.1 5.7-12.9 10.6-20.2 14.5v0.3c36-3.8 71.2-13.4 104.1-28.5v0.5c-16.8 27.3-37.9 51.8-62.4 72.5-9.6 7.6-19.1 15.3-28.7 23.2 1.6 40.1-1.3 80.2-8.5 119.7C814.6 656 693 798.1 500.3 859c-84.6 24.7-173.9 28.4-260.2 10.8-37-8.9-73.1-20.9-108.1-35.9-17.9-7.9-35.3-16.9-52-27.2-5.3-3.4-10.8-6.6-16.1-10 19.5 2.7 39.1 3.5 58.8 2.4 18.1-3.2 35.8-2.4 52.5-6.1 38.7-7.5 76-21.1 110.4-40.3 18.2-8.4 34.9-19.5 49.8-33-18.7 0-37.2-3.4-54.7-10-55.5-19.1-98.8-63.3-116.7-119.2 18 1.8 69.9 6.6 82.1-3.7-21.8-3.1-42.4-11.5-60.1-24.5-55.6-33.6-88.7-94.6-86.6-159.5 6.3 2.9 12.5 6.1 18.8 9 12.4 5 25.4 8.6 38.6 10.8 8.1 2.8 16.7 3.6 25.2 2.4h-0.9c-9.3-10.8-24.4-18.2-33.6-29.8C107.3 348.6 92 285.8 106 226c4.6-16.9 11.3-33.2 19.7-48.5 4.8 7.1 10.3 13.7 16.6 19.5 16.2 19.7 34.5 37.5 54.7 53 65.2 53.9 142.2 91.6 224.8 110.2 27 6.9 54.7 10.5 82.5 10.8-7.1-28.8-6.8-58.9 0.9-87.5 13.3-55.6 51.8-101.9 104.1-125 13.2-5.6 26.8-9.9 40.8-12.9z"/></svg>
+      <span>twitter</span>
+    </a>
+    <a class="bili" href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M203.968 224.128 285.44 305.6h316.928l81.472-81.472a51.328 51.328 0 0 1 72.576 72.576L719.36 333.76c56.32 30.72 94.464 90.496 94.464 159.232v202.24c0 100.096-81.152 181.248-181.248 181.248H352.256c-100.096 0-181.248-81.152-181.248-181.248V492.992c0-68.736 38.144-128.512 94.464-159.232l-37.056-37.056a51.328 51.328 0 0 1 72.576-72.576zM352.256 405.333c-48.427 0-87.659 39.232-87.659 87.659v202.24c0 48.427 39.232 87.659 87.659 87.659h280.32c48.427 0 87.659-39.232 87.659-87.659V492.992c0-48.427-39.232-87.659-87.659-87.659H352.256zM384 512a42.667 42.667 0 0 1 42.667 42.667v42.666a42.667 42.667 0 1 1-85.334 0v-42.666A42.667 42.667 0 0 1 384 512zm256 0a42.667 42.667 0 0 1 42.667 42.667v42.666a42.667 42.667 0 1 1-85.334 0v-42.666A42.667 42.667 0 0 1 640 512z"/></svg>
+      <span>bilibili</span>
+    </a>
+    <a class="gith" href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 42.666667A464.64 464.64 0 0 0 42.666667 502.186667 460.373333 460.373333 0 0 0 363.52 938.666667c23.466667 4.266667 32-9.813333 32-22.186667v-78.08c-130.56 27.733333-158.293333-61.44-158.293333-61.44a122.026667 122.026667 0 0 0-52.053334-67.413333c-42.666667-28.16 3.413333-27.733333 3.413334-27.733334a98.56 98.56 0 0 1 71.68 47.36 101.12 101.12 0 0 0 136.533333 37.973334 99.413333 99.413333 0 0 1 29.866667-61.44c-104.106667-11.52-213.333333-50.773333-213.333334-226.986667a177.066667 177.066667 0 0 1 47.36-124.16 161.28 161.28 0 0 1 4.693334-121.173333s39.68-12.373333 128 46.933333a455.68 455.68 0 0 1 234.666666 0c89.6-59.306667 128-46.933333 128-46.933333a161.28 161.28 0 0 1 4.693334 121.173333A177.066667 177.066667 0 0 1 810.666667 477.866667c0 176.64-110.08 215.466667-213.333334 226.986666a106.666667 106.666667 0 0 1 32 85.333334v125.866666c0 14.933333 8.533333 26.88 32 22.186667A460.8 460.8 0 0 0 981.333333 502.186667 464.64 464.64 0 0 0 512 42.666667"/></svg>
+      <span>github</span>
+    </a>
+    <a class="more" href="Link.html">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 96C282.6 96 96 282.6 96 512s186.6 416 416 416 416-186.6 416-416S741.4 96 512 96z m0 761.6c-190.4 0-345.6-155.2-345.6-345.6S321.6 166.4 512 166.4 857.6 321.6 857.6 512 702.4 857.6 512 857.6z"/><path d="M512 320a192 192 0 1 0 0 384 192 192 0 0 0 0-384z m0 313.6a121.6 121.6 0 1 1 0-243.2 121.6 121.6 0 0 1 0 243.2z"/></svg>
+      <span>all links</span>
+    </a>
   </div>
+</div>
 
-  <!-- CONTENT GRID -->
-  <div class="content-grid">
+<div class="maincontainer" style="margin-top:56px;">
+  <p class="cn">同样的，欢迎继续探索这片声域：</p>
+</div>
 
-    <!-- BLOG POSTS -->
-    <div class="main-col">
-      <div class="sec-head">
-        <div class="sec-title">blog</div>
-        <div class="sec-count">2 posts</div>
-      </div>
+<div class="maincontainer islandlinks">
+  <ul>
+    <li><a class="items" href="Blog.html"><strong>blog</strong><span>制作与思考的碎片 &gt;&gt;</span></a></li>
+    <li><a class="items" href="Works.html"><strong>works</strong><span>旋律与节奏的迸发 &gt;&gt;</span></a></li>
+    <li><a class="items" href="Link.html"><strong>links</strong><span>在电子海洋的尽头相会 &gt;&gt;</span></a></li>
+  </ul>
+</div>
 
-      <div class="post-list stagger">
-
-        <!-- POST 1 (EN) -->
-        <div class="post-item" onclick="location.href='./posts/post-01-en.html'">
-          <div class="post-date">
-            2025.06.--
-            <span class="post-lang en">EN</span>
-          </div>
-          <div class="post-title">[Article 1 EN title — to be filled]</div>
-          <div class="post-excerpt">
-            [Excerpt — paste docx content here]
-          </div>
-          <span class="post-tag">production</span>
-        </div>
-
-        <!-- POST 1 (CN) -->
-        <div class="post-item" onclick="location.href='./posts/post-01-cn.html'">
-          <div class="post-date">
-            2025.06.--
-            <span class="post-lang">CN</span>
-          </div>
-          <div class="post-title-zh">[article1 — 我是占位符]</div>
-          <div class="post-excerpt">
-            [摘要占位符 — 内容]
-          </div>
-          <span class="post-tag">制作</span>
-        </div>
-
-        <!-- POST 2 (EN) -->
-        <div class="post-item" onclick="location.href='./posts/post-02-en.html'">
-          <div class="post-date">
-            2025.06.--
-            <span class="post-lang en">EN</span>
-          </div>
-          <div class="post-title">[article2 — placeholder]</div>
-          <div class="post-excerpt">
-            [Excerpt — docx here]
-          </div>
-          <span class="post-tag">thoughts</span>
-        </div>
-
-        <!-- POST 2 (CN) -->
-        <div class="post-item" onclick="location.href='./posts/post-02-cn.html'">
-          <div class="post-date">
-            2025.06.--
-            <span class="post-lang">CN</span>
-          </div>
-          <div class="post-title-zh">[文2标 — 我也是占位符]</div>
-          <div class="post-excerpt">
-            [摘要 — 内容]
-          </div>
-          <span class="post-tag">thoughts</span>
-        </div>
-
-      </div>
-    </div><!-- /main-col -->
-
-    <!-- SIDEBAR -->
-    <div class="side-col">
-
-      <div class="widget">
-        <div class="widget-title">profile</div>
-        <div class="profile-block">
-          <div class="profile-row">
-            <span class="profile-key">name</span>
-            <span class="profile-val zh">早川 咲詩</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">alias</span>
-            <span class="profile-val">Sauta</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">born</span>
-            <span class="profile-val">jul 03, 2005</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">based</span>
-            <span class="profile-val zh">China</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">origin</span>
-            <span class="profile-val">Vietnam</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">daw</span>
-            <span class="profile-val">FL Studio</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">label</span>
-            <span class="profile-val">PASAU SOUND</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="widget">
-        <div class="widget-title">currently</div>
-        <div class="currently-list">
-          <div>
-            <div class="curr-label">listening ♪</div>
-            <!-- syncs with APlayer via player-init.js -->
-            <div class="curr-value" id="now-playing" style="color: var(--dim); font-size:11px">—</div>
-          </div>
-          <div>
-            <div class="curr-label">working on</div>
-            <div class="curr-value zh">digicore demo</div>
-          </div>
-          <div>
-            <div class="curr-label">playing</div>
-            <div class="curr-value" style="color: var(--dim); font-size:11px">—</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="widget">
-        <div class="widget-title">links</div>
-        <div class="links-list">
-          <a class="ext-link" href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
-          <a class="ext-link" href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">bilibili</a>
-          <a class="ext-link" href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
-          <a class="ext-link" href="./Link.html">all links →</a>
-        </div>
-      </div>
-
-    </div><!-- /side-col -->
-
-  </div><!-- /content-grid -->
-
-</div><!-- /page-wrap -->
-
-<footer>
-  <div class="footer-left">
-    <span class="zh">早川咲詩</span><br>
-    Hayakawa Sauta
-    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
-  </div>
-  <div class="footer-right">
-    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
-    <a href="https://space.bilibili.com/24474955" target="_blank" rel="noopener">bilibili</a>
-    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
-    <span class="footer-copy">© 2025 sauta</span>
-  </div>
-</footer>
+<div class="islandbottom">
+  <ul>
+    <li><a href="About.html">那些还未写完的 demo，亦是珍贵的宝物。</a></li>
+    <li><a href="About.html">about sauta</a></li>
+  </ul>
+</div>
 
 <div class="stripe"></div>
 
-<!-- APlayer -->
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<script src="./js/player-init.js"></script>
+<script>
+/* ===== ported & adapted from shiori-net.work page.js / bar.js ===== */
+
+var slogans = [
+  "Hayakawa Sauta",
+  "以声音为信件，<br>以节拍为心跳。",
+  "深夜、浪潮，<br>还有没写完的 demo。",
+  "Hello, World!",
+  "为什么要用 FL Studio？",
+  "这是一条<br>测试文本。",
+  "我的回合，<br>抽卡！",
+  "愿你在潮声里获得幸福。"
+];
+
+function rand(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); } // 改用 Math.floor，避免 Math.round 导致两端数字概率偏低
+
+function getMsg(){
+  var r = rand(0, slogans.length - 1);
+  document.getElementById('slogan').innerHTML = slogans[r];
+}
+getMsg();
+
+var tags = [
+  'FL Studio 用户', 'Bitwig 也在学', 'REAPER 偶尔用用',
+  'PASAU SOUND 创始人', 'Mousedown Records 联合创始人',
+  '2005年7月3日出生', '越南血统 · 现居中国',
+  'digicore 爱好者', 'hyperpop 爱好者', 'Weeb（二次元）',
+  '亚文化爱好者', 'demo还没写完',
+  '你都翻到这里看标签池了，看来是真爱。',
+  '你很幸运，点到了这个毫无意义的标签，请再点一次。',
+  '刚刚走神了，这个不算，再点一个。'
+];
+
+function getRandomTag(){ return tags[rand(0, tags.length - 1)]; }
+
+var rollBox = document.getElementById('rollTag');
+var rollTimer = null;
+var currentTagSpan = null; // 记住当前显示的标签，而不是靠 .ready 去查找
+
+function rollATag(){
+  rollBox.classList.add('active');
+
+  // 把"上一个"标签标记为移除动画，并在动画结束后删除它。
+  // 用变量直接引用，不再依赖 .ready 这个可能和调用间隔产生竞争的 class，
+  // 这样无论 rollOnce() 调用得多快，都不会有标签堆积不被清理的问题。
+  if(currentTagSpan){
+    var prev = currentTagSpan;
+    prev.classList.add('removing');
+    setTimeout(function(){ if(prev.parentNode) prev.remove(); }, 100);
+  }
+
+  var span = document.createElement('span');
+  span.textContent = getRandomTag();
+  rollBox.appendChild(span);
+  currentTagSpan = span;
+}
+
+function rollOnce(){
+  clearInterval(rollTimer);
+  rollTimer = setInterval(rollATag, 20);
+  setTimeout(function(){ clearInterval(rollTimer); rollTimer = setInterval(rollATag, 40); }, 400);
+  setTimeout(function(){ clearInterval(rollTimer); rollTimer = setInterval(rollATag, 80); }, 800);
+  setTimeout(function(){ clearInterval(rollTimer); rollTimer = setInterval(rollATag, 140); }, 1200);
+  setTimeout(function(){ clearInterval(rollTimer); rollTimer = setInterval(rollATag, 240); }, 1600);
+  setTimeout(function(){ clearInterval(rollTimer); rollTimer = null; }, 1800);
+}
+
+var added = false;
+function addATag(){
+  if(added) return;
+  added = true;
+  var box = document.getElementById('noAdd');
+  box.classList.add('active');
+  var span = document.createElement('span');
+  span.textContent = '非常遗憾的是，这个小功能站主还没有写完，敬请期待 w';
+  box.appendChild(span);
+}
+
+/* nav bar opacity on scroll, ported from bar.js */
+window.addEventListener('scroll', function(){
+  var dt = document.documentElement.scrollTop || document.body.scrollTop;
+  var bar = document.getElementById('topbar');
+  if(dt !== 0){ bar.classList.add('bar-active'); }
+  else{ bar.classList.remove('bar-active'); }
+});
+</script>
 
 </body>
 </html>

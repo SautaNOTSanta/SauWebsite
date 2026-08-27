@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     ① 改这里：浏览器标签页标题
+     格式跟其他页面一致："早川咲詩 — 文章标题"
+     ============================================================ -->
+<title>早川咲詩 — 【文章标题占位符】</title>
+<meta name="description" content="【一句话摘要占位符，给搜索引擎/分享卡片用】">
+
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="../css/animations.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+<style>
+  /* 文章正文专用的排版样式，不用改，除非你想调整字号/间距 */
+  .post-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  .post-head { margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 32px; }
+
+  .post-head .post-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .post-head .post-lang {
+    font-family: var(--comic);
+    font-size: 10px;
+    border: 1px solid rgba(247,168,184,0.25);
+    color: var(--pink);
+    padding: 0 5px;
+  }
+  .post-head .post-lang.en { color: var(--blue); border-color: rgba(85,205,252,0.25); }
+
+  .post-head h1 {
+    font-family: var(--en);
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: normal;
+    line-height: 1.3;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .post-head .post-title-zh {
+    font-family: var(--zh);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dim);
+  }
+
+  /* 正文段落 */
+  .post-body {
+    font-family: var(--zh);
+    font-size: 15px;
+    line-height: 2.1;
+    color: #d5d5d5;
+  }
+  .post-body p { margin-bottom: 22px; }
+  .post-body p.en {
+    font-family: var(--en);
+    font-style: italic;
+    color: var(--dim);
+    font-size: 14px;
+  }
+  .post-body h2 {
+    font-family: var(--pixel);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    color: var(--blue);
+    margin: 40px 0 16px;
+  }
+  .post-body a { color: var(--blue); border-bottom: 1px solid rgba(85,205,252,0.35); }
+  .post-body a:hover { border-color: var(--blue); }
+  .post-body img { border: 1px solid var(--dim2); margin: 24px 0; }
+  .post-body blockquote {
+    border-left: 2px solid var(--dim2);
+    padding-left: 18px;
+    color: var(--dim);
+    font-style: italic;
+    margin: 24px 0;
+  }
+
+  .post-tags {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #222;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+
+<header>
+  <a href="../Home.html" class="site-id" style="text-decoration:none">
+    <div class="site-en">Hayakawa Sauta</div>
+    <div class="site-zh">早川　咲詩</div>
+  </a>
+  <nav>
+    <a href="../Blog.html" class="active">blog</a>
+    <a href="../About.html">about</a>
+    <a href="../Works.html">works</a>
+    <a href="../Link.html">links</a>
+  </nav>
+</header>
+
+<div class="post-wrap fade-in">
+  <a class="back-link" href="../Blog.html">back</a>
+
+  <div class="post-head">
+
+    <!-- ============================================================
+         ② 改这里：日期 + 语言标签
+         中文文章用 <span class="post-lang">CN</span>
+         英文文章用 <span class="post-lang en">EN</span>
+         ============================================================ -->
+    <div class="post-date">
+      2025.--.--
+      <span class="post-lang">CN</span>
+    </div>
+
+    <!-- ============================================================
+         ③ 改这里：标题
+         h1 放主标题（一般用英文/罗马音，跟首页风格统一）
+         post-title-zh 放中文副标题，没有就删掉这一行
+         ============================================================ -->
+    <h1>【Article Title — 待填】</h1>
+    <div class="post-title-zh">【中文标题 — 待填】</div>
+  </div>
+
+  <!-- ============================================================
+       ④ 改这里：正文
+       - 普通段落直接用 <p>...</p>
+       - 想插入斜体的英文引言/旁白，用 <p class="en">...</p>
+       - 想加小节标题，用 <h2>小节名</h2>
+       - 想引用别人的话，用 <blockquote>...</blockquote>
+       - 想放图，用 <img src="../images/xxx.jpg" alt="">
+       写多少段都行，模板只是给个起手样式
+       ============================================================ -->
+  <div class="post-body">
+    <p>【正文第一段 — 待填】</p>
+    <p>【正文第二段 — 待填】</p>
+  </div>
+
+  <!-- ============================================================
+       ⑤ 改这里：文章标签
+       跟 Blog.html 侧栏一样，蓝/粉两种颜色，随便选
+       没有标签就把整个 div 删掉
+       ============================================================ -->
+  <div class="post-tags">
+    <span class="tag blue">【标签1】</span>
+    <span class="tag pink">【标签2】</span>
+    <span class="tag">【标签3】</span>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-left">
+    <span class="zh">早川咲詩</span><br>
+    Hayakawa Sauta
+    <div class="pixel-rule" style="margin-top:6px">PASAU SOUND</div>
+  </div>
+  <div class="footer-right">
+    <a href="https://twitter.com/s4u7a" target="_blank" rel="noopener">twitter</a>
+    <a href="https://github.com/SautaNOTSanta" target="_blank" rel="noopener">github</a>
+    <span class="footer-copy">© 2025 sauta</span>
+  </div>
+</footer>
+
+<div class="stripe"></div>
+
+<!-- APlayer（跟别的页面一样，全局播放器） -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="../js/player-init.js"></script>
+
+</body>
+</html>

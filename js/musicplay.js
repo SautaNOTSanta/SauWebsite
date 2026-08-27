@@ -7,10 +7,10 @@ if (enterButton) {
     enterButton.addEventListener('click', function(event) {
         event.preventDefault();  // 阻止默认的页面跳转
         
-        // 在 localStorage 中设置一个标志，通知 Home.html 页面播放音乐
+        // 在 localStorage 中设置一个标志，通知 Blog.html 页面播放音乐
         localStorage.setItem('playMusic', 'true');
 
-        // 跳转到 Home.html
-        window.location.href = 'Home.html';
+        // 跳转到 Blog.html
+        window.location.href = 'Blog.html';
     });
 }
